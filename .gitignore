@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 ADDRESS
-./ethereum/build/*.json
+ethereum/build/*.json
