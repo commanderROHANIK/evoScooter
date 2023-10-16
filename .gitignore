@@ -1,0 +1,25 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+evoscooter/node_modules
+evoscooter/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+evoscooter/.next/
+evoscooter/out/
+
+# production
+evoscooter/build
+
+# misc
+evoscooter/.DS_Store
+evoscooter/.env*
+
+# debug
+evoscooter/npm-debug.log*
+evoscooter/yarn-debug.log*
+evoscooter/yarn-error.log*
