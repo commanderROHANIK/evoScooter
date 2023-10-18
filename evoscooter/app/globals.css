@@ -38,3 +38,11 @@ body {
   border-radius: 10%;
   padding: 5% 2.5% 5% 2.5%;
 }
+
+.listItem {
+  background-color: white;
+  width: 80%;
+  color: black;
+  margin-top: 2%;
+  margin-left: 10%;
+}
