@@ -7,10 +7,13 @@ export default async function Login() {
         {
             todos.map((todo) => {
                 return (
-                    <div 
-                        key={todo.id}
-                        className="listItem">
-                        <p>{todo.title}</p>
+                    <div
+                        className="list">
+                        <div 
+                            key={todo.id}
+                            className="listItem">
+                            <p>{todo.title}</p>
+                        </div>
                     </div>
                 )
             })
