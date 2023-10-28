@@ -23,3 +23,22 @@ export async function GET(request) {
     return Response.json(rows);
 }
 
+export async function POST(response) {
+    let conn;
+    let rows;
+    let resp;
+    let data = await response.json();
+    try {
+        conn = await pool.getConnection();
+        rows = await conn.query("INSERT INTO user (Name, Email, LicenseNumber, Type) VALUES ('" + data.name + "', '" + data.email + "', '" + data.password + "', 'fm');");
+        resp = 200;
+    } catch (err) {
+        console.log(err)
+        resp = "ERR";
+    } finally {
+        conn.end();
+    }
+
+    return Response.json({resp});
+}
+
