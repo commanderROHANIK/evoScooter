@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react"
 
 export default function Login() {
-  
+
   const router = useRouter();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -34,10 +34,9 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 background">
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm round" >
-
-      <div>
+    <div className="h-screen flex items-center">
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg-white rounded-xl">
+        <div className="m-6">
           <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
             Name
           </label>
@@ -54,7 +53,7 @@ export default function Login() {
           </div>
         </div>
 
-        <div>
+        <div className="m-6">
           <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
             Email address
           </label>
@@ -71,7 +70,7 @@ export default function Login() {
           </div>
         </div>
 
-        <div>
+        <div className="m-6">
           <div className="flex items-center justify-between">
             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
               Password
@@ -91,7 +90,7 @@ export default function Login() {
           </div>
         </div>
 
-        <div>
+        <div className="m-6">
           <div className="flex items-center justify-between">
             <label htmlFor="passwordAgain" className="block text-sm font-medium leading-6 text-gray-900">
               Password again
@@ -109,7 +108,7 @@ export default function Login() {
           </div>
         </div>
 
-        <div>
+        <div className="m-6">
           <div className="flex items-center justify-between">
             <label htmlFor="site" className="block text-sm font-medium leading-6 text-gray-900">
               Site
@@ -131,7 +130,7 @@ export default function Login() {
           </div>
         </div>
 
-        <div>
+        <div className="m-6">
           <button
             type="button"
             onClick={submit}

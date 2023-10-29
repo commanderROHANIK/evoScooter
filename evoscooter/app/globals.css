@@ -18,45 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-.background {
   background-image: url('../public/backgroud.png');
-  
   background-size: cover;
-    background-position: center;
-    background-attachment: fixed; /* Háttérkép fix pozícióban */
-    background-repeat: no-repeat;
-}
-
-.round {
-  background-color: white;
-  border-radius: 10%;
-  padding: 5% 2.5% 5% 2.5%;
-}
-
-.list {
-  position: relative;
-  z-index: 1; /* Előtérben */
-  display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1%;
-}
-
-.listItem {
-  color: black;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px 0; /* Kártyák közötti tér */
-  width: 80%; /* A kártyák szélessége */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  background-attachment: fixed;
 }
