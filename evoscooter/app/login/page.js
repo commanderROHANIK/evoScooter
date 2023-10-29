@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export default function Login() {
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 background">
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm round" >
           <form className="space-y-6" action="#" method="POST">
             <div>
