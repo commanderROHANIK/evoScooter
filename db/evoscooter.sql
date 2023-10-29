@@ -65,7 +65,7 @@ CREATE TABLE `user` (
   `Name` varchar(250) NOT NULL,
   `LicenseNumber` varchar(100) NOT NULL,
   `Type` varchar(10) NOT NULL,
-  `Site.Address` varchar(100) NOT NULL
+  `SiteAddress` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
@@ -111,7 +111,7 @@ ALTER TABLE `site`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`Email`),
   ADD UNIQUE KEY `Email` (`Email`),
-  ADD KEY `SiteKey` (`Site.Address`);
+  ADD KEY `SiteKey` (`SiteAddress`);
 
 --
 -- Indexes for table `vehicle`
@@ -146,7 +146,7 @@ ALTER TABLE `rentals`
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `SiteKey` FOREIGN KEY (`Site.Address`) REFERENCES `site` (`Address`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `SiteKey` FOREIGN KEY (`SiteAddress`) REFERENCES `site` (`Address`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `vehicle`

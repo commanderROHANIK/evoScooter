@@ -30,7 +30,10 @@ export async function POST(response) {
     let data = await response.json();
     try {
         conn = await pool.getConnection();
-        rows = await conn.query("INSERT INTO user (Name, Email, LicenseNumber, Type) VALUES ('" + data.name + "', '" + data.email + "', '" + data.password + "', 'fm');");
+        rows = await conn.query("INSERT INTO user (Name, Email, LicenseNumber, Type, SiteAddress) VALUES ('" + 
+        data.name + "', '" + 
+        data.email + "', '" + 
+        data.password + "', 'usr', (select Address from site where Address like '%" + data.site + "%'));");
         resp = 200;
     } catch (err) {
         console.log(err)
