@@ -1,9 +1,11 @@
 'use client'
 
+import { useRouter } from "next/navigation";
 import { useState } from "react"
 
 export default function Login() {
   
+  const router = useRouter();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,6 +26,10 @@ export default function Login() {
     });
 
     const data = await response.json();
+
+    if (data.resp == 200) {
+      router.push("/login");
+    }
     console.log(data);
   }
 
@@ -95,7 +101,7 @@ export default function Login() {
             <input
               id="passwordAgain"
               name="passwordAgain"
-              type="passwordAgain"
+              type="password"
               autoComplete="current-password"
               required
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
