@@ -1,18 +1,11 @@
-import Image from 'next/image';
-import logo from '../../public/evoLogo.png';
+import Header from "../commonComponents/header";
 
 export default async function Login() {
   const todos = await getStaticProps();
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8" >
-        <div className="header rounded-xl bg-black">
-            <Image
-                className="h-12 w-auto m-5"
-                src={logo}
-                alt="evosoft Logo"
-            />
-        </div>
+        <Header />        
         {
             todos.map((todo) => {
                 return (
