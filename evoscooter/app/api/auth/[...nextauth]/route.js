@@ -8,7 +8,7 @@ export const authOptions = {
     providers: [
         CredentialsProvider({
             async authorize(credentials) {
-                console.log(credentials);
+                return true;
             }
         })
     ],
