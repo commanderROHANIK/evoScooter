@@ -13,8 +13,9 @@ export default function Login() {
 
   const handleLogin = () => {
     signIn("credentials", {
-      email: "Taylor",
-      password: "Swift"
+      email: email,
+      password: password,
+      callbackUrl: "/home"
     });
   }
 
