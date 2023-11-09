@@ -8,7 +8,31 @@ export const authOptions = {
     providers: [
         CredentialsProvider({
             async authorize(credentials) {
-                return true;
+                if (!credentials?.email || !credentials?.password) {
+                    return null;
+                }
+                const mariadb = require('mariadb');
+                const pool = mariadb.createPool({
+                    host: "localhost",
+                    user: "root",
+                    password: "root",
+                    connectionLimit: 10,
+                    database: "evoscooter"
+                });
+                let conn = await pool.getConnection();
+                let rows = await conn.query("SELECT * FROM user WHERE Email = '" + credentials.email + "';");
+
+                let user = rows[0];
+
+                if (!user) {
+                    return null;
+                }
+                
+                if(user.Password === credentials.password) {
+                    return user;
+                }
+
+                return null;
             }
         })
     ],
