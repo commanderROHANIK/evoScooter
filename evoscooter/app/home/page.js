@@ -12,7 +12,7 @@ export default async function Login() {
                         <div 
                             key={todo.id}
                             className="bg-white m-5 text-black rounded-xl h-16">
-                            <p>{todo.title}</p>
+                            <p>{todo.Type}</p>
                         </div>
                 )
             })
@@ -22,6 +22,9 @@ export default async function Login() {
 }
 
 async function getStaticProps() {
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+    // const response = await fetch("/api/vehicles");
+    const response = await fetch('http://localhost:3000/api/vehicles', {
+        method: 'GET',
+      });
     return response.json();
 }
