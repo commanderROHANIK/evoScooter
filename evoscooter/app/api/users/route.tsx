@@ -9,7 +9,7 @@ const pool = mariadb.createPool({
     database: "evoscooter"
 });
 
-export async function GET(request) {
+export async function GET(request: Request) {
     let conn;
     let rows;
 
@@ -25,7 +25,7 @@ export async function GET(request) {
     return Response.json(rows);
 }
 
-export async function POST(response) {
+export async function POST(response: Response) {
     let conn;
     let rows;
     let resp;
