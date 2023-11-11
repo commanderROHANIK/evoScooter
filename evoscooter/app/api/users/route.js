@@ -1,3 +1,5 @@
+import { hash } from "bcrypt";
+
 const mariadb = require('mariadb');
 const pool = mariadb.createPool({
     host: "localhost",
@@ -33,7 +35,7 @@ export async function POST(response) {
         rows = await conn.query("INSERT INTO user (Name, Email, Password, Type, SiteAddress) VALUES ('" + 
         data.name + "', '" + 
         data.email + "', '" + 
-        data.password + "', 'usr', (select Address from site where Address like '%" + data.site + "%'));");
+        await hash(data.password, 10) + "', 'usr', (select Address from site where Address like '%" + data.site + "%'));");
         resp = 200;
     } catch (err) {
         console.log(err)
