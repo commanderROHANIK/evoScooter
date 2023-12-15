@@ -1,3 +1,4 @@
+import { compare } from "bcrypt";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -32,7 +33,7 @@ export const authOptions = {
                     return null;
                 }
                 
-                if(user.Password === credentials.password) {
+                if(compare(credentials.password, user.password)) {
                     return {id: 1, email: user.Email};
                 }
 
