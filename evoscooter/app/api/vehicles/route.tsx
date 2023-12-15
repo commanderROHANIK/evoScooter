@@ -7,13 +7,13 @@ const pool = mariadb.createPool({
     database: "evoscooter"
 });
 
-export async function GET(request) {
+export async function GET(request: Request) {
     let conn;
     let rows;
 
     try {
         conn = await pool.getConnection();
-        rows = await conn.query("SELECT * FROM user");
+        rows = await conn.query("SELECT * FROM vehicle");
     } catch (err) {
         console.log(err)
     } finally {
@@ -23,14 +23,14 @@ export async function GET(request) {
     return Response.json(rows);
 }
 
-export async function POST(response) {
+export async function POST(response: Response) {
     let conn;
     let rows;
     let resp;
     let data = await response.json();
     try {
         conn = await pool.getConnection();
-        rows = await conn.query("INSERT INTO user (Name, Email, Password, Type, SiteAddress) VALUES ('" + 
+        rows = await conn.query("INSERT INTO vehicle (Name, Email, Password, Type, SiteAddress) VALUES ('" + 
         data.name + "', '" + 
         data.email + "', '" + 
         data.password + "', 'usr', (select Address from site where Address like '%" + data.site + "%'));");

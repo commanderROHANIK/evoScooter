@@ -7,7 +7,11 @@ export const authOptions = {
     },
     providers: [
         CredentialsProvider({
-            async authorize(credentials) {
+            credentials: {
+                username: {},
+                password: {}
+            },
+            async authorize(credentials, req) {
                 if (!credentials?.email || !credentials?.password) {
                     return null;
                 }
@@ -29,7 +33,7 @@ export const authOptions = {
                 }
                 
                 if(user.Password === credentials.password) {
-                    return user;
+                    return {id: 1, email: user.Email};
                 }
 
                 return null;
