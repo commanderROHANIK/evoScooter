@@ -1,3 +1,5 @@
+"use server";
+
 const mariadb = require('mariadb');
 const pool = mariadb.createPool({
     host: "localhost",
@@ -7,19 +9,18 @@ const pool = mariadb.createPool({
     database: "evoscooter"
 });
 
-export async function GET(request: Request) {
+export async function getVehicles() {
     let conn;
     let rows;
 
     try {
         conn = await pool.getConnection();
-        rows = await conn.query("SELECT * FROM site");
+        rows = await conn.query("SELECT * FROM vehicle");
     } catch (err) {
         console.log(err)
     } finally {
         conn.end();
     }
 
-    return Response.json(rows);
+    return rows;
 }
-
