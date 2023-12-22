@@ -2,9 +2,11 @@ import Header from "../commonComponents/header";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";
+import { getVehicles } from "./actions";
+
 
 export default async function Login() {
-    const vehicles = await getStaticProps();
+    const vehicles = await getVehicles();
     const session = await getServerSession(authOptions);
 
     if (!session) {
@@ -27,12 +29,4 @@ export default async function Login() {
             }
         </div>
     )
-}
-
-async function getStaticProps() {
-    // const response = await fetch("/api/vehicles");
-    const response = await fetch('http://localhost:3000/api/vehicles', {
-        method: 'GET',
-    });
-    return response.json();
 }
