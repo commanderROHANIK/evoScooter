@@ -1,29 +1,7 @@
 import { AddVehicleProps } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-
- async function handleSubmit(formData: FormData) {
-    // const mariadb = require('mariadb');
-    // const pool = mariadb.createPool({
-    //     host: "localhost",
-    //     user: "root",
-    //     password: "root",
-    //     connectionLimit: 10,
-    //     database: "evoscooter"
-    // });
-    
-    // let conn;
-    // let rows;
-
-    // try {
-    //     conn = await pool.getConnection();
-    //     rows = await conn.query(`INSERT INTO vehicle (Type, Rentable, SiteAddress) VALUES ('${formData.get("type")}', '1', (select Address from site where Address like '%${formData.get("sites")}%'));`);
-    // } catch (err) {
-    //     console.log(err)
-    // } finally {
-    //     conn.end();
-    // }
-}
+import { handleAddVehicleSubmit } from "../actions";
 
 const AddVehicle = ({ isOpen, closeModal }: AddVehicleProps) => {
     return (
@@ -54,7 +32,7 @@ const AddVehicle = ({ isOpen, closeModal }: AddVehicleProps) => {
                                 leaveTo='opacity-0 scale-95'
                             >
                                 <Dialog.Panel className='relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5'>
-                                    <form action={handleSubmit} className="h-screen flex items-center">
+                                    <form action={handleAddVehicleSubmit} className="h-screen flex items-center">
                                         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg-white rounded-xl">
                                             <div className="m-6">
                                                 <label htmlFor="type" className="block text-sm font-medium leading-6 text-gray-900">
