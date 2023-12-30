@@ -33,6 +33,15 @@ export async function handleAddVehicleSubmit(formData: FormData) {
     await addDataToDB(query)
 }
 
+export async function handleAddUserSubmit(formData: FormData) {
+    console.log(formData);
+    /*let type = formData.get("type");
+    let site = formData.get("sites");
+    let query = "INSERT INTO evoscooter.vehicle (ID, `Type`, Rentable, `Site.Address`) VALUES(0, '"+ type +"', 0, (select Address from site where Address like '%"+ site +"%'));";
+    
+    await addDataToDB(query)*/
+}
+
 async function getDataFromDB(query: string) {
     let conn;
     let rows;

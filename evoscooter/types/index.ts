@@ -5,6 +5,11 @@ export interface AddVehicleProps {
     closeModal: () => void;
 }
 
+export interface AddUserProps {
+    isOpen: boolean;
+    closeModal: () => void;
+}
+
 export interface CustomButtonProps {
     isDisabled?: boolean;
     btnType?: "button" | "submit";
@@ -23,4 +28,16 @@ export interface VehicleData {
 
 export interface VehicleProps {
     Vehicles: Array<VehicleData>;
+}
+
+export interface UserData {
+    Email: string;
+    Name: string;
+    LicenseNumber: string;
+    Type: string;
+    SiteAddress: string;
+}
+
+export interface UserProps {
+    Users: Array<UserData>;
 }
