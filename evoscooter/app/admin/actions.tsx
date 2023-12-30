@@ -25,6 +25,13 @@ export async function getRentals() {
 
 }
 
+export async function handleAddSiteSubmit(formData: FormData) {
+    let address = formData.get("address");
+    let query = `INSERT INTO evoscooter.site (Address) VALUES('${address}');`;
+    
+    await addDataToDB(query)
+}
+
 export async function handleAddVehicleSubmit(formData: FormData) {
     let type = formData.get("type");
     let site = formData.get("sites");

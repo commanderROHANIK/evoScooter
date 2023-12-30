@@ -1,5 +1,5 @@
 import Header from "../commonComponents/header";
-import { getUsers, getVehicles } from "./actions";
+import { getSites, getUsers, getVehicles } from "./actions";
 import Sites from "./components/sites";
 import Users from "./components/users";
 import Vehicles from "./components/vehicles";
@@ -11,8 +11,7 @@ export default async function AdminPage() {
             <Header />
             <Vehicles Vehicles={await getVehicles()}/>
             <Users Users={await getUsers()}/>
-            <Sites />
-            Admin page
+            <Sites Sites={await getSites()}/>
         </div>
     );
 }
