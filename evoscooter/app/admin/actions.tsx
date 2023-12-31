@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
 const mariadb = require('mariadb');
 const pool = mariadb.createPool({
     host: "localhost",
@@ -30,6 +32,7 @@ export async function handleAddSiteSubmit(formData: FormData) {
     let query = `INSERT INTO evoscooter.site (Address) VALUES('${address}');`;
     
     await addDataToDB(query)
+    revalidatePath("/admin");
 }
 
 export async function handleAddVehicleSubmit(formData: FormData) {
@@ -38,15 +41,22 @@ export async function handleAddVehicleSubmit(formData: FormData) {
     let query = "INSERT INTO evoscooter.vehicle (ID, `Type`, Rentable, `Site.Address`) VALUES(0, '"+ type +"', 0, (select Address from site where Address like '%"+ site +"%'));";
     
     await addDataToDB(query)
+    revalidatePath("/admin");
 }
 
 export async function handleAddUserSubmit(formData: FormData) {
-    console.log(formData);
-    /*let type = formData.get("type");
+    let email = formData.get("email");
+    let name = formData.get("name");
+    let licenseNumber = formData.get("licenseNumber");
+    let type = formData.get("type");
     let site = formData.get("sites");
-    let query = "INSERT INTO evoscooter.vehicle (ID, `Type`, Rentable, `Site.Address`) VALUES(0, '"+ type +"', 0, (select Address from site where Address like '%"+ site +"%'));";
+    let query = `INSERT INTO evoscooter.user (Email, Name, LicenseNumber, Type, SiteAddress) VALUES('${email}', '${name}','${licenseNumber}','${type}',(select Address from site where Address like '%${site}%'));`;
     
-    await addDataToDB(query)*/
+    if (type === undefined || type?.toString.length === 0)
+        type = "usr"
+
+    await addDataToDB(query);
+    revalidatePath("/admin");
 }
 
 async function getDataFromDB(query: string) {
