@@ -4,6 +4,8 @@ import { useState } from "react";
 import AddVehicle from "./AddVehicle";
 import CustomButton from "./CustomButton";
 import { VehicleData, VehicleProps } from "@/types";
+import ShowVehicle from "./ShowVehicle";
+import { removeVehicle } from "../actions";
 
 
 export default function Vehicles(AllVehicles: VehicleProps) {
@@ -22,11 +24,19 @@ export default function Vehicles(AllVehicles: VehicleProps) {
             <AddVehicle isOpen={isOpen} closeModal={() => setIsOpen(false)} />
             {
                 AllVehicles.Vehicles.map((vehicle: VehicleData) => {
+                    const [isEditOpen, setIsEditOpen] = useState(false);
                     return (
                         <div
                             key={vehicle.Id}
-                            className="bg-white m-5 text-black rounded-xl h-16">
+                            className="bg-white m-5 text-black rounded-xl h-16"
+                            onClick={() => setIsEditOpen(true)}>
                             <p>{vehicle.Type}</p>
+                            <button
+                                className="bg-red-600 text-lg text-black rounded-md"
+                                onClick={() =>
+                                    console.log(vehicle.Id) 
+                                }
+                            >Remove</button>
                         </div>
                     )
                 })
@@ -34,3 +44,6 @@ export default function Vehicles(AllVehicles: VehicleProps) {
         </div>
     );
 }
+//removeVehicle(vehicle.Id).then(() => console.log("done")).catch((error) => console.log(error));
+
+//<ShowVehicle isOpen={isEditOpen} closeModal={() => setIsEditOpen(false)} vehicle={vehicle}/>

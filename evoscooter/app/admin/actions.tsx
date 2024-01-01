@@ -27,6 +27,11 @@ export async function getRentals() {
 
 }
 
+export async function removeVehicle(id: number) {
+    console.log(id);
+    await getDataFromDB(`DELETE FROM evoscooter.vehicle WHERE ID=${id};`);
+}
+
 export async function handleAddSiteSubmit(formData: FormData) {
     let address = formData.get("address");
     let query = `INSERT INTO evoscooter.site (Address) VALUES('${address}');`;
@@ -77,16 +82,13 @@ async function getDataFromDB(query: string) {
 
 async function addDataToDB(query: string) {
     let conn;
-    let rows;
 
     try {
         conn = await pool.getConnection();
-        rows = await conn.query(query);
+        await conn.query(query);
     } catch (err) {
         console.log(err)
     } finally {
         conn.end();
     }
-
-    return rows;
 }

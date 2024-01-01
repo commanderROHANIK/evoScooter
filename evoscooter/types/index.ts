@@ -10,6 +10,12 @@ export interface AddUserProps {
     closeModal: () => void;
 }
 
+export interface EditVehicleProps {
+    isOpen: boolean;
+    closeModal: () => void;
+    vehicle: VehicleData;
+}
+
 export interface AddSiteProps {
     isOpen: boolean;
     closeModal: () => void;
