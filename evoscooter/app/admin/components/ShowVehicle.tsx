@@ -4,8 +4,6 @@ import { Fragment } from "react";
 import { handleAddSiteSubmit, handleAddUserSubmit } from "../actions";
 
 const ShowVehicle = ({ isOpen, closeModal, vehicle }: EditVehicleProps) => {
-    console.log(vehicle);
-    console.log("fing");
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>

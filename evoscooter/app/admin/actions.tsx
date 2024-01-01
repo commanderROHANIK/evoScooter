@@ -27,9 +27,9 @@ export async function getRentals() {
 
 }
 
-export async function removeVehicle(id: number) {
-    console.log(id);
-    await getDataFromDB(`DELETE FROM evoscooter.vehicle WHERE ID=${id};`);
+export async function removeVehicle(id: string) {
+    await getDataFromDB(`DELETE FROM evoscooter.vehicle WHERE Type='${id}';`);
+    revalidatePath("/admin");
 }
 
 export async function handleAddSiteSubmit(formData: FormData) {

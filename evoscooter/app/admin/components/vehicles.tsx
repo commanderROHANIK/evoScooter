@@ -29,12 +29,12 @@ export default function Vehicles(AllVehicles: VehicleProps) {
                         <div
                             key={vehicle.Id}
                             className="bg-white m-5 text-black rounded-xl h-16"
-                            onClick={() => setIsEditOpen(true)}>
+                        >
                             <p>{vehicle.Type}</p>
                             <button
                                 className="bg-red-600 text-lg text-black rounded-md"
                                 onClick={() =>
-                                    console.log(vehicle.Id) 
+                                    removeVehicle(vehicle.Type).then(() => console.log("done")).catch((error) => console.log(error))
                                 }
                             >Remove</button>
                         </div>
