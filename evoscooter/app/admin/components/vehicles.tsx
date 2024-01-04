@@ -4,12 +4,12 @@ import { useState } from "react";
 import AddVehicle from "./AddVehicle";
 import CustomButton from "./CustomButton";
 import { VehicleData, VehicleProps } from "@/types";
-import ShowVehicle from "./ShowVehicle";
-import { removeVehicle } from "../actions";
+import VehicleCard from "./VehicleCard";
 
 
 export default function Vehicles(AllVehicles: VehicleProps) {
     const [isOpen, setIsOpen] = useState(false);
+
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="flex">
@@ -24,26 +24,13 @@ export default function Vehicles(AllVehicles: VehicleProps) {
             <AddVehicle isOpen={isOpen} closeModal={() => setIsOpen(false)} />
             {
                 AllVehicles.Vehicles.map((vehicle: VehicleData) => {
-                    const [isEditOpen, setIsEditOpen] = useState(false);
                     return (
-                        <div
-                            key={vehicle.Id}
-                            className="bg-white m-5 text-black rounded-xl h-16"
-                        >
-                            <p>{vehicle.Type}</p>
-                            <button
-                                className="bg-red-600 text-lg text-black rounded-md"
-                                onClick={() =>
-                                    removeVehicle(vehicle.Type).then(() => console.log("done")).catch((error) => console.log(error))
-                                }
-                            >Remove</button>
-                        </div>
+                        <VehicleCard Id={vehicle.Id} Type={vehicle.Type} Rentable={vehicle.Rentable} Address={vehicle.Address} />
                     )
                 })
             }
         </div>
     );
 }
-//removeVehicle(vehicle.Id).then(() => console.log("done")).catch((error) => console.log(error));
 
-//<ShowVehicle isOpen={isEditOpen} closeModal={() => setIsEditOpen(false)} vehicle={vehicle}/>
+
