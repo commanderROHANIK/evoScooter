@@ -16,6 +16,18 @@ export interface EditVehicleProps {
     vehicle: VehicleData;
 }
 
+export interface EditUserProps {
+    isOpen: boolean;
+    closeModal: () => void;
+    user: UserData;
+}
+
+export interface EditSiteProps {
+    isOpen: boolean;
+    closeModal: () => void;
+    site: SiteData;
+}
+
 export interface AddSiteProps {
     isOpen: boolean;
     closeModal: () => void;

@@ -1,5 +1,5 @@
 import { VehicleData } from "@/types";
-import { removeVehicle } from "../actions";
+import { removeVehicle } from "../../actions";
 import ShowVehicle from "./ShowVehicle";
 import { useState } from "react";
 

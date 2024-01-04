@@ -1,9 +1,8 @@
-import { AddSiteProps, AddUserProps, EditVehicleProps} from "@/types";
+import { EditUserProps } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { handleAddSiteSubmit, handleAddUserSubmit } from "../actions";
 
-const ShowVehicle = ({ isOpen, closeModal, vehicle }: EditVehicleProps) => {
+const ShowUser = ({ isOpen, closeModal, user }: EditUserProps) => {
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>
@@ -32,7 +31,7 @@ const ShowVehicle = ({ isOpen, closeModal, vehicle }: EditVehicleProps) => {
                                 leaveTo='opacity-0 scale-95'
                             >
                                 <Dialog.Panel className='relative text-black w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5'>
-                                    {vehicle.Type}
+                                    {user.Name}
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>
@@ -43,4 +42,4 @@ const ShowVehicle = ({ isOpen, closeModal, vehicle }: EditVehicleProps) => {
     );
 };
 
-export default ShowVehicle;
+export default ShowUser;

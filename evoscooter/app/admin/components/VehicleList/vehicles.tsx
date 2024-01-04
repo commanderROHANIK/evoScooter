@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import AddVehicle from "./AddVehicle";
-import CustomButton from "./CustomButton";
+import CustomButton from "../../../commonComponents/CustomButton";
 import { VehicleData, VehicleProps } from "@/types";
 import VehicleCard from "./VehicleCard";
 

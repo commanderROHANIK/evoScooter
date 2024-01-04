@@ -1,8 +1,8 @@
 import Header from "../commonComponents/header";
 import { getSites, getUsers, getVehicles } from "./actions";
-import Sites from "./components/sites";
-import Users from "./components/users";
-import Vehicles from "./components/vehicles";
+import Sites from "./components/SiteList/sites";
+import Users from "./components/UserList/users";
+import Vehicles from "./components/VehicleList/vehicles";
 
 
 export default async function AdminPage() {

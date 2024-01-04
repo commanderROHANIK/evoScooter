@@ -1,7 +1,7 @@
-import { AddUserProps} from "@/types";
+import { AddSiteProps, AddUserProps} from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { handleAddSiteSubmit, handleAddUserSubmit } from "../actions";
+import { handleAddSiteSubmit, handleAddUserSubmit } from "../../actions";
 
 const AddSite = ({ isOpen, closeModal }: AddSiteProps) => {
     return (

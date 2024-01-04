@@ -32,6 +32,16 @@ export async function removeVehicle(id: string) {
     revalidatePath("/admin");
 }
 
+export async function removeUser(email: string) {
+    await getDataFromDB(`DELETE FROM evoscooter.user WHERE Email='${email}';`);
+    revalidatePath("/admin");
+}
+
+export async function removeSite(address: string) {
+    await getDataFromDB(`DELETE FROM evoscooter.site WHERE Address='${address}';`);
+    revalidatePath("/admin");
+}
+
 export async function handleAddSiteSubmit(formData: FormData) {
     let address = formData.get("address");
     let query = `INSERT INTO evoscooter.site (Address) VALUES('${address}');`;

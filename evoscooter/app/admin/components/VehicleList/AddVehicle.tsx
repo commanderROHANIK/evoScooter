@@ -1,7 +1,7 @@
 import { AddVehicleProps } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { handleAddVehicleSubmit } from "../actions";
+import { handleAddVehicleSubmit } from "../../actions";
 
 const AddVehicle = ({ isOpen, closeModal }: AddVehicleProps) => {
     return (

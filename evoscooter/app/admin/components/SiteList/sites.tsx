@@ -1,17 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import CustomButton from "./CustomButton";
-import { UserProps } from "@/types";
-import AddUser from "./AddUser";
+import CustomButton from "../../../commonComponents/CustomButton";
+import { SiteProps } from "@/types";
+import AddSite from "./AddSite";
+import SiteCard from "./SiteCard";
 
-export default function Users(AllUsers: UserProps) {
+export default function Sites(AllSites: SiteProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="flex">
-                <p className="text-lg font-medium leading-6 text-gray-900 py-2 px-4 rounded text-white px-12">Users</p>
+                <p className="text-lg font-medium leading-6 text-gray-900 py-2 px-4 rounded text-white px-12">Sites</p>
                 <CustomButton
                     title='Add'
                     containerStyles='justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 ml-4'
@@ -19,15 +20,11 @@ export default function Users(AllUsers: UserProps) {
                     handleClick={() => setIsOpen(true)}>
                 </CustomButton>
             </div>
-            <AddUser isOpen={isOpen} closeModal={() => setIsOpen(false)} />
+            <AddSite isOpen={isOpen} closeModal={() => setIsOpen(false)} />
             {
-                AllUsers.Users.map((user) => {
+                AllSites.Sites.map((site) => {
                     return (
-                        <div
-                            key={user.Email}
-                            className="bg-white m-5 text-black rounded-xl h-16">
-                            <p>{user.Name}</p>
-                        </div>
+                        <SiteCard Address={site.Address} />
                     )
                 })
             }
