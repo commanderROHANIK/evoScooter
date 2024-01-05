@@ -3,9 +3,9 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { getVehicles } from "./actions";
-import RentVehicleCard from "./RentVehicleCard";
+import RentVehicleCard from "./components/RentVehicleCard";
 import { VehicleData } from "@/types";
-import Vehicles from "./VehicleList";
+import Vehicles from "./components/VehicleList";
 
 
 export default async function Login() {
