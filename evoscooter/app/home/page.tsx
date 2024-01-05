@@ -3,13 +3,12 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { getVehicles } from "./actions";
-import RentVehicleCard from "./components/RentVehicleCard";
-import { VehicleData } from "@/types";
 import Vehicles from "./components/VehicleList";
 
 
 export default async function Login() {
     const session = await getServerSession(authOptions);
+    const vehicles = await getVehicles();
 
     if (!session) {
         redirect("/login");
@@ -18,7 +17,7 @@ export default async function Login() {
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8" >
             <Header />
-            <Vehicles Vehicles={await getVehicles()} />
+            <Vehicles Vehicles={vehicles} Email={`${session.user?.email}`} />
         </div>
     )
 }

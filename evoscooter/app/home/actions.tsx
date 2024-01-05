@@ -9,6 +9,10 @@ const pool = mariadb.createPool({
     database: "evoscooter"
 });
 
+export async function rentVehicle(email: string, vehicleId: string) {
+    console.log(email, vehicleId);
+}
+
 export async function getVehicles() {
     let conn;
     let rows;

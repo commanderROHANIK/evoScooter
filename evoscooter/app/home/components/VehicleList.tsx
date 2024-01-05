@@ -1,12 +1,12 @@
 "use client";
 
-import { VehicleData, VehicleProps } from "@/types";
+import { RentVehicleProps, VehicleData } from "@/types";
 import { useState } from "react";
 import RentVehicleCard from "./RentVehicleCard";
 
-export default function Vehicles(AllVehicles: VehicleProps) {
+export default function Vehicles(AllVehicles: RentVehicleProps) {
     const [isOpen, setIsOpen] = useState(false);
-
+    
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="flex">
@@ -15,7 +15,7 @@ export default function Vehicles(AllVehicles: VehicleProps) {
             {
                 AllVehicles.Vehicles.map((vehicle: VehicleData) => {
                     return (
-                        <RentVehicleCard Id={vehicle.Id} Type={vehicle.Type} Rentable={vehicle.Rentable} Address={vehicle.Address} />
+                        <RentVehicleCard vehicle={vehicle} email={AllVehicles.Email} />
                     )
                 })
             }

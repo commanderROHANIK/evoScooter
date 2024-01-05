@@ -5,21 +5,15 @@ export interface AddPopupProps {
     closeModal: () => void;
 }
 
-export interface EditVehicleProps {
-    isOpen: boolean;
-    closeModal: () => void;
+export interface EditVehicleProps extends AddPopupProps {
     vehicle: VehicleData;
 }
 
-export interface EditUserProps {
-    isOpen: boolean;
-    closeModal: () => void;
+export interface EditUserProps extends AddPopupProps{
     user: UserData;
 }
 
-export interface EditSiteProps {
-    isOpen: boolean;
-    closeModal: () => void;
+export interface EditSiteProps extends AddPopupProps{
     site: SiteData;
 }
 
@@ -40,6 +34,11 @@ export interface VehicleData {
 }
 
 export interface VehicleProps {
+    Vehicles: Array<VehicleData>;
+}
+
+export interface RentVehicleProps {
+    Email: string
     Vehicles: Array<VehicleData>;
 }
 
