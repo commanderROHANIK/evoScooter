@@ -1,9 +1,9 @@
-import { AddVehicleProps } from "@/types";
+import { AddPopupProps } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { handleAddVehicleSubmit } from "../../actions";
 
-const AddVehicle = ({ isOpen, closeModal }: AddVehicleProps) => {
+const AddVehicle = ({ isOpen, closeModal }: AddPopupProps) => {
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>

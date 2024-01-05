@@ -1,11 +1,6 @@
 import { MouseEventHandler } from "react";
 
-export interface AddVehicleProps {
-    isOpen: boolean;
-    closeModal: () => void;
-}
-
-export interface AddUserProps {
+export interface AddPopupProps {
     isOpen: boolean;
     closeModal: () => void;
 }
@@ -26,11 +21,6 @@ export interface EditSiteProps {
     isOpen: boolean;
     closeModal: () => void;
     site: SiteData;
-}
-
-export interface AddSiteProps {
-    isOpen: boolean;
-    closeModal: () => void;
 }
 
 export interface CustomButtonProps {

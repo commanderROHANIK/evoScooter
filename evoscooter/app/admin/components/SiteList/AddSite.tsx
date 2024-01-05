@@ -1,9 +1,9 @@
-import { AddSiteProps, AddUserProps} from "@/types";
+import { AddPopupProps } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { handleAddSiteSubmit, handleAddUserSubmit } from "../../actions";
 
-const AddSite = ({ isOpen, closeModal }: AddSiteProps) => {
+const AddSite = ({ isOpen, closeModal }: AddPopupProps) => {
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>

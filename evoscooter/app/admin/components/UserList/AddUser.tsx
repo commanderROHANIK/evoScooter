@@ -1,9 +1,9 @@
-import { AddUserProps} from "@/types";
+import { AddPopupProps } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { handleAddUserSubmit } from "../../actions";
 
-const AddUser = ({ isOpen, closeModal }: AddUserProps) => {
+const AddUser = ({ isOpen, closeModal }: AddPopupProps) => {
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>
