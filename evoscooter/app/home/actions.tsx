@@ -9,8 +9,19 @@ const pool = mariadb.createPool({
     database: "evoscooter"
 });
 
-export async function rentVehicle(email: string, vehicleId: string) {
+export async function rentVehicle(email: string, vehicleId: number) {
     console.log(email, vehicleId);
+    let conn;
+    let rows;
+
+    try {
+        conn = await pool.getConnection();
+        rows = await conn.query("INSERT INTO evoscooter.rentals (`User.Email`, `Vehicle.Id`, State) VALUES('" + email + "', " + vehicleId + ", 'Tam');");
+    } catch (err) {
+        console.log(err)
+    } finally {
+        conn.end();
+    }
 }
 
 export async function getVehicles() {

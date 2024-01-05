@@ -39,7 +39,7 @@ const RentVehicleDetailsCard = ({ isOpen, closeModal, vehicle, email }: RentVehi
                                     <p>Id: {vehicle.Id}</p>
                                     <p>{vehicle.Type}</p>
                                     <button
-                                        onClick={() => rentVehicle(email, vehicle.Type)}>
+                                        onClick={() => rentVehicle(email, vehicle.Id)}>
                                         Rent
                                     </button>
                                 </Dialog.Panel>
