@@ -106,12 +106,12 @@ DROP TABLE IF EXISTS `vehicle`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vehicle` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Type` varchar(100) NOT NULL,
   `Rentable` tinyint(1) NOT NULL,
   `Site.Address` varchar(100) NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID` (`ID`),
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `Id` (`Id`),
   KEY `Site.Address` (`Site.Address`),
   CONSTRAINT `OtherSiteKey` FOREIGN KEY (`Site.Address`) REFERENCES `site` (`Address`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_hungarian_ci;

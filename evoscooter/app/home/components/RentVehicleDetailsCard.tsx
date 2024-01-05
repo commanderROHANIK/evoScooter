@@ -36,7 +36,8 @@ const RentVehicleDetailsCard = ({ isOpen, closeModal, vehicle, email }: RentVehi
                                 leaveTo='opacity-0 scale-95'
                             >
                                 <Dialog.Panel className='relative text-black w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5'>
-                                    {vehicle.Type}
+                                    <p>Id: {vehicle.Id}</p>
+                                    <p>{vehicle.Type}</p>
                                     <button
                                         onClick={() => rentVehicle(email, vehicle.Type)}>
                                         Rent
