@@ -24,7 +24,7 @@ export async function getSites() {
 }
 
 export async function getRentals() {
-
+    return await getDataFromDB("SELECT * FROM rentals");
 }
 
 export async function removeVehicle(id: string) {

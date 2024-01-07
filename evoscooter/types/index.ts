@@ -17,6 +17,10 @@ export interface EditSiteProps extends AddPopupProps{
     site: SiteData;
 }
 
+export interface EditRentProps extends AddPopupProps {
+    rent: RentData;
+}
+
 export interface CustomButtonProps {
     isDisabled?: boolean;
     btnType?: "button" | "submit";
@@ -48,6 +52,18 @@ export interface SiteData {
 
 export interface SiteProps {
     Sites: Array<SiteData>;
+}
+
+export interface RentData {
+    UserEmail: string;
+    VehicleId: string;
+    Starttime: string;
+    EndTime: string;
+    State: string;
+}
+
+export interface RentProps {
+    Rentals: Array<RentData>;
 }
 
 export interface UserData {
