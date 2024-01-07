@@ -10,7 +10,7 @@ export default function RentVehicleCard({ vehicle, email }: { vehicle: VehicleDa
     return (
         <div
             key={vehicle.Id}
-            className="bg-white m-5 text-black rounded-xl h-16"
+            className={vehicle.Rentable === 0 ? "bg-zinc-300 m-5 text-black rounded-xl h-16" : "bg-white m-5 text-black rounded-xl h-16"}
             onClick={() => setIsOpen(true)}
         >
             <RentVehicleDetailsCard isOpen={isOpen} closeModal={() => setIsOpen(false)} vehicle={vehicle} email={email}/>

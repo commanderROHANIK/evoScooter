@@ -1,12 +1,9 @@
 "use client";
 
 import { RentVehicleProps, VehicleData } from "@/types";
-import { useState } from "react";
 import RentVehicleCard from "./RentVehicleCard";
 
 export default function Vehicles(AllVehicles: RentVehicleProps) {
-    const [isOpen, setIsOpen] = useState(false);
-    
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="flex">
