@@ -29,7 +29,7 @@ export interface CustomButtonProps {
 export interface VehicleData {
     Id: number;
     Type: string;
-    Rentable: boolean;
+    Rentable: number;
     Address: string;
 }
 

@@ -8,6 +8,9 @@ interface RentVehicleProps extends EditVehicleProps{
 }
 
 const RentVehicleDetailsCard = ({ isOpen, closeModal, vehicle, email }: RentVehicleProps) => {
+    if (vehicle.Rentable === 0)
+        return;
+
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>

@@ -10,13 +10,12 @@ const pool = mariadb.createPool({
 });
 
 export async function rentVehicle(email: string, vehicleId: number) {
-    console.log(email, vehicleId);
     let conn;
-    let rows;
 
     try {
         conn = await pool.getConnection();
-        rows = await conn.query("INSERT INTO evoscooter.rentals (`User.Email`, `Vehicle.Id`, State) VALUES('" + email + "', " + vehicleId + ", 'Tam');");
+        await conn.query("INSERT INTO evoscooter.rentals (`User.Email`, `Vehicle.Id`, State) VALUES('" + email + "', " + vehicleId + ", 'Pending');");
+        await conn.query("UPDATE evoscooter.vehicle SET Rentable=0 WHERE Id=" + vehicleId + ";");
     } catch (err) {
         console.log(err)
     } finally {
