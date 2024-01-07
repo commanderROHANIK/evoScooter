@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { rentVehicle } from "../actions";
 
-interface RentVehicleProps extends EditVehicleProps{
+interface RentVehicleProps extends EditVehicleProps {
     email: string;
 }
 
@@ -39,12 +39,49 @@ const RentVehicleDetailsCard = ({ isOpen, closeModal, vehicle, email }: RentVehi
                                 leaveTo='opacity-0 scale-95'
                             >
                                 <Dialog.Panel className='relative text-black w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5'>
-                                    <p>Id: {vehicle.Id}</p>
-                                    <p>{vehicle.Type}</p>
-                                    <button
-                                        onClick={() => rentVehicle(email, vehicle.Id)}>
-                                        Rent
-                                    </button>
+                                    <form action={rentVehicle} className="flex items-center">
+                                        <input id="email" name="email" value={email} type="hidden" />
+                                        <input id="vehicle" name="vehicle" value={vehicle.Id} type="hidden" />
+                                        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg-white rounded-xl">
+                                            <div className="m-6">
+                                                <label htmlFor="start" className="block text-sm font-medium leading-6 text-gray-900">
+                                                    Start Date
+                                                </label>
+                                                <div className="mt-2">
+                                                    <input
+                                                        id="start"
+                                                        name="start"
+                                                        type="datetime-local" // Ez lesz a dátum-idő mező típusa
+                                                        required
+                                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="m-6">
+                                                <label htmlFor="end" className="block text-sm font-medium leading-6 text-gray-900">
+                                                    End Date
+                                                </label>
+                                                <div className="mt-2">
+                                                    <input
+                                                        id="end"
+                                                        name="end"
+                                                        type="datetime-local" // Ez lesz a második dátum-idő mező típusa
+                                                        required
+                                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="m-6">
+                                                <button
+                                                    type="submit"
+                                                    className="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                                                >
+                                                    Rent
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>
