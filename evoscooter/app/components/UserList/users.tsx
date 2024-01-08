@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import CustomButton from "../../../commonComponents/CustomButton";
+import CustomButton from "../common/CustomButton";
 import { UserProps } from "@/types";
 import AddUser from "./AddUser";
 import UserCard from "./UserCard";

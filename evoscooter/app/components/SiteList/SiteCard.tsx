@@ -1,7 +1,7 @@
 import { SiteData } from "@/types";
 import { useState } from "react";
 import ShowSite from "./ShowSite";
-import { removeSite } from "../../actions";
+import { removeSite } from "../../admin/actions";
 
 export default function SiteCard(Site: SiteData) {
     const [isEditOpen, setIsEditOpen] = useState(false);

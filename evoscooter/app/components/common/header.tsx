@@ -1,7 +1,7 @@
 "use client"
 
 import Image from 'next/image';
-import logo from '../../public/evoLogo.png';
+import logo from '../../../public/evoLogo.png';
 import { useRouter } from "next/navigation";
 import { signOut } from 'next-auth/react';
 

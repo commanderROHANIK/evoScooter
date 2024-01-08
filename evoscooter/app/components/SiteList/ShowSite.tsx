@@ -1,7 +1,7 @@
 import { AddSiteProps, AddUserProps, EditSiteProps, EditVehicleProps} from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { handleAddSiteSubmit, handleAddUserSubmit } from "../../actions";
+import { handleAddSiteSubmit, handleAddUserSubmit } from "../../admin/actions";
 
 const ShowSite = ({ isOpen, closeModal, site }: EditSiteProps) => {
     return (

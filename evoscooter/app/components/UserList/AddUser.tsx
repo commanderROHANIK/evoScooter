@@ -1,7 +1,7 @@
 import { AddPopupProps } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { handleAddUserSubmit } from "../../actions";
+import { handleAddUserSubmit } from "../../admin/actions";
 
 const AddUser = ({ isOpen, closeModal }: AddPopupProps) => {
     return (

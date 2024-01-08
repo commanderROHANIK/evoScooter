@@ -1,4 +1,4 @@
-import Header from "../commonComponents/header";
+import Header from "../components/common/header";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";

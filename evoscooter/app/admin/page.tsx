@@ -1,10 +1,10 @@
 import { getServerSession } from "next-auth";
-import Header from "../commonComponents/header";
+import Header from "../components/common/header";
 import { getRentals, getSites, getUsers, getVehicles } from "./actions";
-import Rents from "./components/Rents/rents";
-import Sites from "./components/SiteList/sites";
-import Users from "./components/UserList/users";
-import Vehicles from "./components/VehicleList/vehicles";
+import Rents from "../components/Rents/rents";
+import Sites from "../components/SiteList/sites";
+import Users from "../components/UserList/users";
+import Vehicles from "../components/VehicleList/vehicles";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 

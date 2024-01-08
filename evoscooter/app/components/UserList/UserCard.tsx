@@ -1,7 +1,7 @@
 import { UserData } from "@/types";
 import { useState } from "react";
 import ShowUser from "./ShowUser";
-import { removeUser } from "../../actions";
+import { removeUser } from "../../admin/actions";
 
 export default function UserCard(User: UserData) {
     const [isEditOpen, setIsEditOpen] = useState(false);

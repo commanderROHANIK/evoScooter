@@ -1,9 +1,9 @@
 import { AddPopupProps } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { handleAddVehicleSubmit } from "../../actions";
+import { handleAddSiteSubmit, handleAddUserSubmit } from "../../admin/actions";
 
-const AddVehicle = ({ isOpen, closeModal }: AddPopupProps) => {
+const AddSite = ({ isOpen, closeModal }: AddPopupProps) => {
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>
@@ -32,34 +32,20 @@ const AddVehicle = ({ isOpen, closeModal }: AddPopupProps) => {
                                 leaveTo='opacity-0 scale-95'
                             >
                                 <Dialog.Panel className='relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5'>
-                                    <form action={handleAddVehicleSubmit} className="h-screen flex items-center">
+                                    <form action={handleAddSiteSubmit} className="h-screen flex items-center">
                                         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg-white rounded-xl">
                                             <div className="m-6">
-                                                <label htmlFor="type" className="block text-sm font-medium leading-6 text-gray-900">
-                                                    Type
+                                                <label htmlFor="address" className="block text-sm font-medium leading-6 text-gray-900">
+                                                    Address
                                                 </label>
                                                 <div className="mt-2">
                                                     <input
-                                                        id="type"
-                                                        name="type"
+                                                        id="address"
+                                                        name="address"
                                                         type="text"
                                                         required
                                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6" />
                                                 </div>
-                                            </div>
-                                            <div className="m-6">
-                                                <label htmlFor="sites" className="block text-sm font-medium leading-6 text-gray-900">
-                                                    Site
-                                                </label>
-                                                <select
-                                                    name="sites"
-                                                    id="sites"
-                                                    required
-                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6">
-                                                    <option value="Budapest">Budapest</option>
-                                                    <option value="Miskolc">Miskolc</option>
-                                                    <option value="Szeged">Szeged</option>
-                                                </select>
                                             </div>
                                             <div className="m-6">
                                                 <button
@@ -81,4 +67,4 @@ const AddVehicle = ({ isOpen, closeModal }: AddPopupProps) => {
     );
 };
 
-export default AddVehicle;
+export default AddSite;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import CustomButton from "../../../commonComponents/CustomButton";
+import CustomButton from "../common/CustomButton";
 import { SiteProps } from "@/types";
 import AddSite from "./AddSite";
 import SiteCard from "./SiteCard";
