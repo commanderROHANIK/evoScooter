@@ -39,11 +39,7 @@ export interface VehicleData {
 
 export interface VehicleProps {
     Vehicles: Array<VehicleData>;
-}
-
-export interface RentVehicleProps {
-    Email: string
-    Vehicles: Array<VehicleData>;
+    Email: string;
 }
 
 export interface SiteData {

@@ -20,7 +20,7 @@ export default async function AdminPage() {
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8" >
             <Header />
             <Rents Rentals={await getRentals()}/>
-            <Vehicles Vehicles={await getVehicles()}/>
+            <Vehicles AllVehicles={await getVehicles()} IsAdmin={true}/>
             <Users Users={await getUsers()}/>
             <Sites Sites={await getSites()}/>
         </div>

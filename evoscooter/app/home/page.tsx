@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { getVehicles } from "./actions";
-import Vehicles from "./components/VehicleList";
+import Vehicles from "../components/VehicleList/vehicles";
 
 
 export default async function Login() {
@@ -17,7 +17,7 @@ export default async function Login() {
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8" >
             <Header />
-            <Vehicles Vehicles={vehicles} Email={`${session.user?.email}`} />
+            <Vehicles AllVehicles={vehicles} IsAdmin={false} />
         </div>
     )
 }
