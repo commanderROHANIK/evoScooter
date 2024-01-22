@@ -51,7 +51,7 @@ const RentVehicleDetailsCard = ({ isOpen, closeModal, vehicle, email }: RentVehi
                                                     <input
                                                         id="start"
                                                         name="start"
-                                                        type="datetime-local" // Ez lesz a dátum-idő mező típusa
+                                                        type="datetime-local"
                                                         required
                                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
                                                     />
@@ -65,7 +65,7 @@ const RentVehicleDetailsCard = ({ isOpen, closeModal, vehicle, email }: RentVehi
                                                     <input
                                                         id="end"
                                                         name="end"
-                                                        type="datetime-local" // Ez lesz a második dátum-idő mező típusa
+                                                        type="datetime-local"
                                                         required
                                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
                                                     />

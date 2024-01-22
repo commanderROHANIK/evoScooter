@@ -7,9 +7,10 @@ import RentVehicleDetailsCard from "./RentVehicleDetailsCard";
 interface VehicleCardProps {
     vehicle: VehicleData;
     isAdmin: boolean;
+    email: string;
 }
 
-export default function VehicleCard({ vehicle, isAdmin }: VehicleCardProps) {
+export default function VehicleCard({ vehicle, isAdmin, email }: VehicleCardProps) {
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -28,7 +29,7 @@ export default function VehicleCard({ vehicle, isAdmin }: VehicleCardProps) {
             onClick={handleCardClick}
         >
             {!isAdmin && (
-                <RentVehicleDetailsCard isOpen={isOpen} closeModal={() => setIsOpen(false)} vehicle={vehicle} email={""} />
+                <RentVehicleDetailsCard isOpen={isOpen} closeModal={() => setIsOpen(false)} vehicle={vehicle} email={email} />
             )}
             {isAdmin && (
                 <ShowVehicle isOpen={isEditOpen} closeModal={() => setIsEditOpen(false)} vehicle={vehicle} />

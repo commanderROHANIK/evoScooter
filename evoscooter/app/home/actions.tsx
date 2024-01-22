@@ -21,7 +21,7 @@ export async function rentVehicle(formData: FormData) {
 
     try {
         conn = await pool.getConnection();
-        await conn.query("INSERT INTO evoscooter.rentals (`User.Email`, `Vehicle.Id`, StartTime, EndTime, State) VALUES('" + email +"', " + vehicle + ", '" + start + "', '" + end + "', 'Pending');");
+        await conn.query("INSERT INTO evoscooter.rentals (`UserEmail`, `VehicleId`, StartTime, EndTime, State) VALUES('" + email +"', " + vehicle + ", '" + start + "', '" + end + "', 'Pending');");
         await conn.query("UPDATE evoscooter.vehicle SET Rentable=0 WHERE Id=" + vehicle + ";");
     } catch (err) {
         console.log(err)

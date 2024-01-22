@@ -9,9 +9,10 @@ import VehicleCard from "./VehicleCard";
 interface TestProps {
     AllVehicles: VehicleData[];
     IsAdmin: boolean;
+    Email: string;
 }
 
-export default function Vehicles({ AllVehicles, IsAdmin }: TestProps) {
+export default function Vehicles({ AllVehicles, IsAdmin, Email }: TestProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -32,7 +33,7 @@ export default function Vehicles({ AllVehicles, IsAdmin }: TestProps) {
             {
                 AllVehicles.map((vehicle: VehicleData) => {
                     return (
-                        <VehicleCard vehicle={vehicle} isAdmin={IsAdmin} />
+                        <VehicleCard vehicle={vehicle} isAdmin={IsAdmin} email={Email}/>
                     )
                 })
             }

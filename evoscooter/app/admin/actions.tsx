@@ -53,7 +53,7 @@ export async function handleAddSiteSubmit(formData: FormData) {
 export async function handleAddVehicleSubmit(formData: FormData) {
     let type = formData.get("type");
     let site = formData.get("sites");
-    let query = "INSERT INTO evoscooter.vehicle (ID, `Type`, Rentable, `Site.Address`) VALUES(0, '"+ type +"', 0, (select Address from site where Address like '%"+ site +"%'));";
+    let query = "INSERT INTO evoscooter.vehicle (ID, `Type`, Rentable, `Site.Address`) VALUES(0, '"+ type +"', 1, (select Address from site where Address like '%"+ site +"%'));";
     
     await addDataToDB(query)
     revalidatePath("/admin");
