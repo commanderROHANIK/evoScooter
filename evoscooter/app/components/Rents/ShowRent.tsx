@@ -3,6 +3,9 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
 const ShowSite = ({ isOpen, closeModal, rent }: EditRentProps) => {
+    const startTime = new Date(rent.StartTime).toLocaleDateString();
+    const endTime = new Date(rent.EndTime).toLocaleDateString();
+
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>
@@ -31,7 +34,11 @@ const ShowSite = ({ isOpen, closeModal, rent }: EditRentProps) => {
                                 leaveTo='opacity-0 scale-95'
                             >
                                 <Dialog.Panel className='relative text-black w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5'>
-                                    {rent.UserEmail}
+                                    {rent.UserEmail}<br/>
+                                    {rent.State}<br/>
+                                    {rent.VehicleId}<br/>
+                                    {startTime}<br/>
+                                    {endTime}<br/>
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>

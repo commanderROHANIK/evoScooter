@@ -4,7 +4,7 @@ import ShowRent from "./ShowRent";
 
 export default function SiteCard(Rental: RentData) {
     const [isEditOpen, setIsEditOpen] = useState(false);
-
+    
     return (
         <div
             key={Rental.UserEmail + Rental.VehicleId}

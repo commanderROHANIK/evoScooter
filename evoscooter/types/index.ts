@@ -53,7 +53,7 @@ export interface SiteProps {
 export interface RentData {
     UserEmail: string;
     VehicleId: string;
-    Starttime: string;
+    StartTime: string;
     EndTime: string;
     State: string;
 }
