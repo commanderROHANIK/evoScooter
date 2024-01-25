@@ -1,6 +1,8 @@
 "use server";
 
+import { RentData } from "@/types";
 import { revalidatePath } from "next/cache";
+import formatDateToSQLDateTime from "../utils/DateConverter";
 
 const mariadb = require('mariadb');
 const pool = mariadb.createPool({
@@ -72,6 +74,24 @@ export async function handleAddUserSubmit(formData: FormData) {
 
     await addDataToDB(query);
     revalidatePath("/admin");
+}
+
+export async function updateRentState(rent: RentData, newState: string) {
+    let conn;
+    let querry = `UPDATE evoscooter.rentals SET State='${newState}' WHERE UserEmail='${rent.UserEmail}' AND VehicleId='${rent.VehicleId}' AND StartTime='${formatDateToSQLDateTime(rent.StartTime)}';`;
+
+    try {
+        conn = await pool.getConnection();
+        await conn.query(querry);
+
+        if (newState === "Declined")
+            await await conn.query("UPDATE evoscooter.vehicle SET Rentable=1 WHERE Id=" + rent.VehicleId + ";");
+    } catch (err) {
+        console.log(err)
+    } finally {
+        conn.end();
+        revalidatePath("/home");
+    }
 }
 
 async function getDataFromDB(query: string) {
