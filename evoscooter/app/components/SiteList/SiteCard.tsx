@@ -9,7 +9,7 @@ export default function SiteCard(Site: SiteData) {
     return (
         <div
             key={Site.Address}
-            className="bg-white m-5 text-black rounded-xl h-16"
+            className="bg-white my-5 text-black rounded-xl h-16"
             onClick={() => setIsEditOpen(true)}
         >
             <ShowSite isOpen={isEditOpen} closeModal={() => setIsEditOpen(false)} site={Site} />

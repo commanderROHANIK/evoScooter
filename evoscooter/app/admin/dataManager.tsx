@@ -15,14 +15,27 @@ interface DataManageProps {
 }
 
 export default function DataManager({ rentals, vehicles, users, sites }: DataManageProps) {
-    const [cardId, setCardId] = useState(0);
+    const [cardId, setCardId] = useState(1);
 
     return (
-        <div>
-            <button onClick={() => setCardId(1)}>Rentals</button>
-            <button onClick={() => setCardId(2)}>Vehicles</button>
-            <button onClick={() => setCardId(3)}>Users</button>
-            <button onClick={() => setCardId(4)}>Sites</button>
+        <div
+            className="mt-6">
+            <button
+                onClick={() => setCardId(1)}
+                className='justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 ml-4'>
+                Rentals</button>
+            <button
+                onClick={() => setCardId(2)}
+                className='justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 ml-4'>
+                Vehicles</button>
+            <button
+                onClick={() => setCardId(3)}
+                className='justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 ml-4'>
+                Users</button>
+            <button
+                onClick={() => setCardId(4)}
+                className='justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 ml-4'>
+                Sites</button>
 
             {cardId === 1 && (
                 <Rents Rentals={rentals} />

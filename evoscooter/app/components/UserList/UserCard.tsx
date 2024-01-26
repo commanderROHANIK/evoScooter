@@ -9,7 +9,7 @@ export default function UserCard(User: UserData) {
     return (
         <div
             key={User.Email}
-            className="bg-white m-5 text-black rounded-xl h-16"
+            className="bg-white my-5 text-black rounded-xl h-16"
             onClick={() => setIsEditOpen(true)}
         >
             <ShowUser isOpen={isEditOpen} closeModal={() => setIsEditOpen(false)} user={User} />

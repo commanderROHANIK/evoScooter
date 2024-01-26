@@ -25,7 +25,7 @@ export default function VehicleCard({ vehicle, isAdmin, email }: VehicleCardProp
     return (
         <div
             key={vehicle.Id}
-            className={vehicle.Rentable === 0 ? "bg-zinc-300 m-5 text-black rounded-xl h-16" : "bg-white m-5 text-black rounded-xl h-16"}
+            className={vehicle.Rentable === 0 ? "bg-zinc-300 my-5 text-black rounded-xl h-16" : "bg-white my-5 text-black rounded-xl h-16"}
             onClick={handleCardClick}
         >
             {!isAdmin && (

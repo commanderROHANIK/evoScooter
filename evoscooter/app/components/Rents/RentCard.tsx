@@ -8,7 +8,7 @@ export default function SiteCard(Rental: RentData) {
     return (
         <div
             key={Rental.UserEmail + Rental.VehicleId}
-            className="bg-white m-5 text-black rounded-xl h-16"
+            className="bg-white my-6 text-black rounded-xl h-16"
             onClick={() => setIsEditOpen(true)}
         >
             <ShowRent isOpen={isEditOpen} closeModal={() => setIsEditOpen(false)} rent={Rental} />
