@@ -25,7 +25,7 @@ export default function VehicleCard({ vehicle, isAdmin, email }: VehicleCardProp
     return (
         <div
             key={vehicle.Id}
-            className={vehicle.Rentable === 0 ? "bg-zinc-300 my-5 text-black rounded-xl h-16" : "bg-white my-5 text-black rounded-xl h-16"}
+            className={vehicle.Rentable === 0 ? "bg-zinc-300 bg-opacity-80 my-6 text-black rounded-xl h-16 flex items-center justify-between px-4 cursor-pointer" : "bg-white bg-opacity-80 my-6 text-black rounded-xl h-16 flex items-center justify-between px-4 cursor-pointer"}
             onClick={handleCardClick}
         >
             {!isAdmin && (
@@ -37,7 +37,7 @@ export default function VehicleCard({ vehicle, isAdmin, email }: VehicleCardProp
             <p className="text-black">{vehicle.Type}</p>
             {isAdmin && (
                 <button
-                    className="bg-black text-lg text-white rounded-md hover:bg-black hover:text-green-200 transition duration-300 ease-in-out px-4"
+                    className="bg-red-600 text-white text-sm rounded-md px-2 py-1"
                     onClick={() =>
                         removeVehicle(vehicle.Type)
                             .then(() => console.log("done"))

@@ -9,13 +9,13 @@ export default function SiteCard(Site: SiteData) {
     return (
         <div
             key={Site.Address}
-            className="bg-white my-5 text-black rounded-xl h-16"
+            className="bg-white bg-opacity-80 my-6 text-black rounded-xl h-16 flex items-center justify-between px-4 cursor-pointer hover:bg-gray-100"
             onClick={() => setIsEditOpen(true)}
         >
             <ShowSite isOpen={isEditOpen} closeModal={() => setIsEditOpen(false)} site={Site} />
             <p>{Site.Address}</p>
             <button
-                className="bg-red-600 text-lg text-black rounded-md"
+                className="bg-red-600 text-white text-sm rounded-md px-2 py-1"
                 onClick={() =>
                     removeSite(Site.Address).then(() => console.log("done")).catch((error) => console.log(error))
                 }
