@@ -8,7 +8,7 @@ import RentCard from "./RentCard";
 
 export default function Rents(RentsToApprove: RentProps) {
     const [isOpen, setIsOpen] = useState(false);
-
+    
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="flex">
@@ -24,7 +24,7 @@ export default function Rents(RentsToApprove: RentProps) {
             {
                 RentsToApprove.Rentals.map((rental) => {
                     return (
-                        <RentCard UserEmail={rental.UserEmail} VehicleId={rental.VehicleId} StartTime={rental.StartTime} EndTime={rental.EndTime} State={rental.State}  />
+                        <RentCard UserEmail={rental.UserEmail} VehicleId={rental.VehicleId} Starttime={rental.Starttime} EndTime={rental.EndTime} State={rental.State}  />
                     )
                 })
             }
