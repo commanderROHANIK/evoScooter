@@ -1,6 +1,7 @@
 import { compare } from "bcrypt";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaClient } from "@prisma/client";
 
 export const authOptions = {
     session: {
@@ -16,27 +17,19 @@ export const authOptions = {
                 if (!credentials?.email || !credentials?.password) {
                     return null;
                 }
-                const mariadb = require('mariadb');
-                const pool = mariadb.createPool({
-                    host: "localhost",
-                    user: "root",
-                    password: "root",
-                    connectionLimit: 10,
-                    database: "evoscooter"
-                });
-                let conn = await pool.getConnection();
-                let rows = await conn.query("SELECT * FROM user WHERE Email = '" + credentials.email + "';");
 
-                let user = rows[0];
+                const prisma = new PrismaClient();
+                const user = await prisma.user.findFirst({
+                    where: {
+                        email: credentials?.email
+                    }
+                })
 
-                if (!user) {
-                    return null;
+                if (!user) return null;
+
+                if(await compare(credentials?.password, user?.password)) {
+                    return {id: 1, email: user.email};
                 }
-                
-                if(compare(credentials.password, user.password)) {
-                    return {id: 1, email: user.Email};
-                }
-
                 return null;
             }
         })

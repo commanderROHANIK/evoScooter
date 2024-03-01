@@ -1,61 +1,82 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { PrismaClient } from "@prisma/client";
 
-const mariadb = require('mariadb');
-const pool = mariadb.createPool({
-    host: "localhost",
-    user: "root",
-    password: "root",
-    connectionLimit: 10,
-    database: "evoscooter"
-});
+const prisma = new PrismaClient();
 
 export async function getVehicles() {
-    return await getDataFromDB("SELECT * FROM vehicle");
+    return prisma.vehicle.findMany();
 }
 
 export async function getUsers() {
-    return await getDataFromDB("SELECT * FROM user");
+    return prisma.user.findMany();
 }
 
 export async function getSites() {
-    return await getDataFromDB("SELECT * FROM site");
+    return prisma.site.findMany();
 }
 
 export async function getRentals() {
-    return await getDataFromDB("SELECT * FROM rentals");
+    return prisma.rentals.findMany();
 }
 
-export async function removeVehicle(id: string) {
-    await getDataFromDB(`DELETE FROM evoscooter.vehicle WHERE Type='${id}';`);
+export async function removeVehicle(id: number) {
+    await prisma.vehicle.delete({
+        where: {
+            id: id
+        }
+    });
     revalidatePath("/admin");
 }
 
 export async function removeUser(email: string) {
-    await getDataFromDB(`DELETE FROM evoscooter.user WHERE Email='${email}';`);
+    await prisma.user.delete({
+        where: {
+            email: email
+        }
+    })
     revalidatePath("/admin");
 }
 
 export async function removeSite(address: string) {
-    await getDataFromDB(`DELETE FROM evoscooter.site WHERE Address='${address}';`);
+    await prisma.site.delete({ where: { address: address } })
     revalidatePath("/admin");
 }
 
 export async function handleAddSiteSubmit(formData: FormData) {
-    let address = formData.get("address");
-    let query = `INSERT INTO evoscooter.site (Address) VALUES('${address}');`;
-    
-    await addDataToDB(query)
+    //let address = formData.get("address")?.toString();
+    //let query = `INSERT INTO evoscooter.site (Address) VALUES('${address}');`;
+
+
+    if (formData.get("address") != null)
+        await prisma.site.create({ data: { address: `${formData.get("address")}` } })
+
     revalidatePath("/admin");
 }
 
 export async function handleAddVehicleSubmit(formData: FormData) {
-    let type = formData.get("type");
-    let site = formData.get("sites");
-    let query = "INSERT INTO evoscooter.vehicle (ID, `Type`, Rentable, `Site.Address`) VALUES(0, '"+ type +"', 1, (select Address from site where Address like '%"+ site +"%'));";
-    
-    await addDataToDB(query)
+    const type = formData.get("type");
+    const site = formData.get("sites");
+
+    const siteRecord = await prisma.site.findFirst({
+        where: {
+            address: {
+                contains: `${site}`
+            }
+        }
+    });
+
+    if (!siteRecord) return;
+
+    await prisma.vehicle.create({
+        data: {
+            type: `${type}`,
+            rentable: true,
+            siteAddress: siteRecord.address
+        }
+    });
+
     revalidatePath("/admin");
 }
 
@@ -65,40 +86,36 @@ export async function handleAddUserSubmit(formData: FormData) {
     let licenseNumber = formData.get("licenseNumber");
     let type = formData.get("type");
     let site = formData.get("sites");
-    let query = `INSERT INTO evoscooter.user (Email, Name, LicenseNumber, Type, SiteAddress) VALUES('${email}', '${name}','${licenseNumber}','${type}',(select Address from site where Address like '%${site}%'));`;
-    
-    if (type === undefined || type?.toString.length === 0)
-        type = "usr"
 
-    await addDataToDB(query);
+    // Ellenőrizzük, hogy a 'type' változó undefined-e vagy üres string
+    if (typeof type === 'undefined' || (typeof type === 'string' && type.length === 0)) {
+        type = "usr";
+    }
+
+    try {
+        const siteRecord = await prisma.site.findFirst({
+            where: {
+                address: {
+                    contains: `${site}`
+                }
+            }
+        });
+        // Prisma segítségével hozzáadjuk az új felhasználót az adatbázishoz
+        await prisma.user.create({
+            data: {
+                email: `${email}`,
+                name: `${name}`,
+                licenseNumber: `${licenseNumber}`,
+                type: `${type}`,
+                siteAddress: siteRecord?.address,
+                password: ""
+            }
+        });
+        
+    } catch (error) {
+        console.error('Error creating new user:', error);
+    } finally {
+        await prisma.$disconnect();
+    }
     revalidatePath("/admin");
-}
-
-async function getDataFromDB(query: string) {
-    let conn;
-    let rows;
-
-    try {
-        conn = await pool.getConnection();
-        rows = await conn.query(query);
-    } catch (err) {
-        console.log(err)
-    } finally {
-        conn.end();
-    }
-
-    return rows;
-}
-
-async function addDataToDB(query: string) {
-    let conn;
-
-    try {
-        conn = await pool.getConnection();
-        await conn.query(query);
-    } catch (err) {
-        console.log(err)
-    } finally {
-        conn.end();
-    }
 }

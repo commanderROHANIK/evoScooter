@@ -2,7 +2,9 @@
 
 import { hash } from "bcrypt";
 import { redirect } from "next/navigation";
+import { PrismaClient } from "@prisma/client";
 
+const prisma = new PrismaClient();
 
 export async function handleSubmit(formData: FormData) {
     const name = formData.get("name");
@@ -13,24 +15,27 @@ export async function handleSubmit(formData: FormData) {
 
     if (password !== passwordAgain) return;
 
-    const mariadb = require('mariadb');
-    const pool = mariadb.createPool({
-        host: "localhost",
-        user: "root",
-        password: "root",
-        connectionLimit: 10,
-        database: "evoscooter"
-    });
-
-    let conn;
-
     try {
-        conn = await pool.getConnection();
-        await conn.query(`INSERT INTO user (Name, Email, Password, Type, SiteAddress) VALUES ('${name}', '${email}', '${await hash(password as string, 10)}', 'usr', (select Address from site where Address like '%${site}%'));`);
-    } catch (err) {
-        console.log(err);
+        const hashedPassword = await hash(password as string, 10);
+        console.log(site);
+        await prisma.user.create({
+            data: {
+                name: `${name}`,
+                email: `${email}`,
+                password: hashedPassword,
+                type: 'usr',
+                site: {
+                    connect: {
+                        address: site?.toString()
+                    }
+                }
+            }
+        });
+    }
+    catch (error) {
+        console.error('Error creating user:', error);
     } finally {
-        conn.end();
+        await prisma.$disconnect();
     }
 
     redirect("/login");

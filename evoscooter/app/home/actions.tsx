@@ -1,15 +1,9 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { PrismaClient } from "@prisma/client";
 
-const mariadb = require('mariadb');
-const pool = mariadb.createPool({
-    host: "localhost",
-    user: "root",
-    password: "root",
-    connectionLimit: 10,
-    database: "evoscooter"
-});
+const prisma = new PrismaClient();
 
 export async function rentVehicle(formData: FormData) {
     const email = formData.get("email");
@@ -17,32 +11,26 @@ export async function rentVehicle(formData: FormData) {
     const start = formData.get("start");
     const end = formData.get("end");
 
-    let conn;
 
-    try {
-        conn = await pool.getConnection();
-        await conn.query("INSERT INTO evoscooter.rentals (`UserEmail`, `VehicleId`, StartTime, EndTime, State) VALUES('" + email +"', " + vehicle + ", '" + start + "', '" + end + "', 'Pending');");
-        await conn.query("UPDATE evoscooter.vehicle SET Rentable=0 WHERE Id=" + vehicle + ";");
-    } catch (err) {
-        console.log(err)
-    } finally {
-        conn.end();
-        revalidatePath("/home");
-    }
+    const newRental = await prisma.rentals.create({
+        data: {
+          userEmail: `${email}`,
+          vehicleId: parseInt(`${vehicle}`, 10),
+          startTime: `${start}`,
+          endTime: `${end}`,
+          state: "Pending"
+        }
+      });
+      console.log('New rental created:', newRental);
+  
+      await prisma.vehicle.update({
+        where: { id: parseInt(`${vehicle}`, 10) },
+        data: { rentable: false }
+      });
+
+    revalidatePath("/home");
 }
 
 export async function getVehicles() {
-    let conn;
-    let rows;
-
-    try {
-        conn = await pool.getConnection();
-        rows = await conn.query("SELECT * FROM vehicle");
-    } catch (err) {
-        console.log(err)
-    } finally {
-        conn.end();
-    }
-
-    return rows;
+    return await prisma.vehicle.findMany();
 }

@@ -93,9 +93,9 @@ const AddUser = ({ isOpen, closeModal }: AddPopupProps) => {
                                                     id="sites"
                                                     required
                                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6">
-                                                    <option value="Budapest">Budapest</option>
-                                                    <option value="Miskolc">Miskolc</option>
-                                                    <option value="Szeged">Szeged</option>
+                                                    <option value="Budapest, Magyar Tudósok Körútja 11, 1117 Magyarország">Budapest</option>
+                                                    <option value="Miskolc, Arany János tér 1, 3526 Magyarország">Miskolc</option>
+                                                    <option value="Szeged, Horváth Mihály u. 5, 6720 Magyarország">Szeged</option>
                                                 </select>
                                             </div>
                                             <div className="m-6">
