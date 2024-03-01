@@ -1,5 +1,6 @@
 "use server";
 
+import { RentData } from "@/types";
 import { revalidatePath } from "next/cache";
 import { PrismaClient } from "@prisma/client";
 

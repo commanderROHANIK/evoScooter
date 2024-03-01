@@ -1,8 +1,12 @@
+import { updateRentState } from "@/app/admin/actions";
 import { EditRentProps } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
 const ShowSite = ({ isOpen, closeModal, rent }: EditRentProps) => {
+    const startTime = new Date(rent.StartTime).toLocaleDateString();
+    const endTime = new Date(rent.EndTime).toLocaleDateString();
+    let state = rent.State === "Pending";
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>
@@ -31,7 +35,22 @@ const ShowSite = ({ isOpen, closeModal, rent }: EditRentProps) => {
                                 leaveTo='opacity-0 scale-95'
                             >
                                 <Dialog.Panel className='relative text-black w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5'>
-                                    {rent.UserEmail}
+                                    <p>Requesting use: {rent.UserEmail}</p>
+                                    <p>State: {rent.State}</p>
+                                    <p>Vehicle: {rent.VehicleId}</p>
+                                    <p>Start time: {startTime}</p>
+                                    <p>End time: {endTime}</p>
+                                    {state && (<span>
+                                        <button
+                                            className="bg-green-600 text-lg text-white rounded-md w-full p-1"
+                                            onClick={async () => await updateRentState(rent, "Approved")}
+                                        >Approve</button>
+                                        
+                                        <button 
+                                            className="bg-red-600 text-lg text-white rounded-md w-full mt-4 p-1" 
+                                            onClick={async () => await updateRentState(rent, "Declined")}
+                                        >Decline</button>
+                                    </span>)}
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>
