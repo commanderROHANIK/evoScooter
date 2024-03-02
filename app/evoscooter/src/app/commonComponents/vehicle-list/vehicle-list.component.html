@@ -1,3 +1,12 @@
 <div id="vehicle-list">
+    <div *ngIf="showTitle">
+        <h2>Vehicle list</h2>
+        <button (click)="addVehicle()">Add Vehicle</button>
+    </div>
+
     <app-vehicle-card *ngFor="let vehicle of vehicleList" [vehicle]="vehicle"></app-vehicle-card>
+
+    <div *ngIf="popupVisible">
+        <app-add-vehicle></app-add-vehicle>
+    </div>
 </div>
