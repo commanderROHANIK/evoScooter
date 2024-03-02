@@ -1,9 +1,18 @@
 <div id="addVehicle">
     <form>
-        <input type="text" name="input1">
-        <input type="text" name="input2">
-        <input type="text" name="input3">
-        <input type="text" name="input4">
+        <mat-form-field class="id">
+            <mat-label>Id</mat-label>
+            <input type="text" matInput [formControl]="idFormControl" placeholder="Ex. pat@example.com">
+        </mat-form-field><br>
+        <mat-form-field class="type">
+            <mat-label>type</mat-label>
+            <input type="text" matInput [formControl]="typeFormControl" placeholder="Ex. pat@example.com">
+        </mat-form-field><br>
+        <mat-form-field class="site">
+            <mat-label>site</mat-label>
+            <input type="text" matInput [formControl]="siteFormControl" placeholder="Ex. pat@example.com">
+        </mat-form-field><br>
+        <button mat-raised-button color="primary">Add</button>
     </form>
     
 </div>
