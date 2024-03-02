@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatButtonModule],
+  imports: [
+    MatButtonModule,
+    RouterLink,
+    RouterOutlet
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

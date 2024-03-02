@@ -26,3 +26,14 @@
     background-color: #f5f5f5;
   }
 }
+
+a {
+  text-decoration: none;
+  &:hover,
+  &:active,
+  &:visited,
+  &:focus {
+      text-decoration: none;
+  }
+  color: white;
+}
