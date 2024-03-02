@@ -1,1 +1,21 @@
-<p>login works!</p>
+<div>
+    <div id="inner">
+
+        <form action="" (submit)="onFormSubmit($event)">
+            <mat-form-field class="email">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="password">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput [formControl]="passwordFormControl">
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="primary"><a routerLink="/home" routerLinkActive="active"
+                    ariaCurrentWhenActive="page">Login</a></button> <br>
+            <button mat-raised-button color="primary"><a routerLink="/registration" routerLinkActive="active"
+                    ariaCurrentWhenActive="page">Registration</a></button>
+        </form>
+    </div>
+</div>
