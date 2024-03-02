@@ -17,4 +17,8 @@ export class VehicleService {
   getAllVehicles() {
     return this.vehicleList;
   }
+
+  addVehicle(vehicle: { name: string, value: string }) {
+    this.vehicleList.push(vehicle);
+  }
 }

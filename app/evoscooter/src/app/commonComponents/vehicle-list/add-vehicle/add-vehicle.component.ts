@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { VehicleService } from '../../../services/vehicle.service';
 
 @Component({
   selector: 'app-add-vehicle',
@@ -22,4 +23,17 @@ export class AddVehicleComponent {
   idFormControl!: FormControl<any>;
   typeFormControl!: FormControl<any>;
   siteFormControl!: FormControl<any>;
+  vehicleService: VehicleService;
+
+  constructor() {
+    this.idFormControl = new FormControl('');
+    this.typeFormControl = new FormControl('');
+    this.siteFormControl = new FormControl('');
+    this.vehicleService = new VehicleService();
+  }
+
+  onFormSubmit($event: SubmitEvent) {
+    $event.preventDefault();
+    this.vehicleService.addVehicle({  name: this.idFormControl.value, value: this.typeFormControl.value });
+  }
 }

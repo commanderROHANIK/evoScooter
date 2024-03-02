@@ -1,5 +1,5 @@
 <div id="addVehicle">
-    <form>
+    <form action="" (submit)="onFormSubmit($event)">
         <mat-form-field class="id">
             <mat-label>Id</mat-label>
             <input type="text" matInput [formControl]="idFormControl" placeholder="Ex. pat@example.com">
@@ -12,7 +12,7 @@
             <mat-label>site</mat-label>
             <input type="text" matInput [formControl]="siteFormControl" placeholder="Ex. pat@example.com">
         </mat-form-field><br>
-        <button mat-raised-button color="primary">Add</button>
+        <button mat-raised-button color="primary">Add</button>        
     </form>
     
 </div>
