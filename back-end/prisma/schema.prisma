@@ -9,6 +9,46 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Rentals {
+  userEmail String
+  vehicleId Int
+  startTime DateTime
+  endTime   DateTime
+  state     String
+
+  @@id([userEmail, vehicleId])
+  User    User    @relation(fields: [userEmail], references: [email])
+  Vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+}
+
+model Site {
+  address String    @id @unique
+  User    User[]
+  Vehicle Vehicle[]
+}
+
+model User {
+  email         String    @id @unique
+  name          String
+  licenseNumber String?
+  type          String
+  password      String
+  Rentals       Rentals[]
+
+  site          Site      @relation(fields: [siteAddress], references: [address])
+  siteAddress   String    
+}
+
+model Vehicle {
+  id          Int     @id @default(autoincrement())
+  type        String
+  rentable    Boolean
+  siteAddress String
+
+  site    Site      @relation(fields: [siteAddress], references: [address])
+  Rentals Rentals[]
 }
