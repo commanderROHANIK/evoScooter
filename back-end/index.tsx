@@ -30,3 +30,19 @@ app.get("/vehicles", async (req, res) => {
   const data = await prisma.vehicle.findMany();
   res.send(data);
 });
+
+app.get("/users", async (req, res) => {
+  const data = await prisma.user.findMany();
+  res.send(data);
+});
+
+app.post("/users", async (req, res) => {
+  try {
+    const newUser = await prisma.user.create({
+      data: req.body
+    });
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to create user" });
+  }
+});
