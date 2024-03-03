@@ -5,4 +5,13 @@ type VehicleData = {
     siteAddress: number;
 };
 
-export { VehicleData };
+type UserData = {
+    email: string;
+    name: string;
+    licenseNumber: string;
+    type: string;
+    password: string;
+    siteAddress: string;
+};
+
+export { VehicleData, UserData };
