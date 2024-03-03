@@ -5,24 +5,8 @@ const port = 3000;
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-var allowedOrigins = [
-  'http://localhost:4200',
-  'http://localhost:4200/admin',
-  'http://localhost:4200/home'
-];
-
-app.use(cors({
-  origin: function(origin, callback){
-    if(!origin) return callback(null, true);
-    
-    if(allowedOrigins.indexOf(origin) === -1){
-      var msg = 'The CORS policy for this site does not ' +
-                'allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  }
-}));
+app.use(cors());
+app.use(express.json());
 
 app.listen(port);
 
@@ -39,7 +23,16 @@ app.get("/users", async (req, res) => {
 app.post("/users", async (req, res) => {
   try {
     const newUser = await prisma.user.create({
-      data: req.body
+      data: {
+        email: req.body.email,
+        name: req.body.name,
+        licenseNumber: req.body.licenseNumber,
+        type: req.body.type,
+        password: req.body.password,
+        site: {
+          connect: { address: req.body.siteAddress },
+        },
+      }
     });
     res.status(201).json(newUser);
   } catch (error) {

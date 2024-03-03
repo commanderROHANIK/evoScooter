@@ -13,7 +13,6 @@ export class VehicleService {
 
   async getAllVehicles() {
     await this.http.get("http://localhost:3000/vehicles").subscribe((data: any) => {
-      console.log(data);
       this.vehicleList = data;
     });
 
