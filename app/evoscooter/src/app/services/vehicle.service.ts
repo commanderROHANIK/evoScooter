@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { VehicleData } from '../types/types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehicleService {
-  vehicleList: any = [];
+  vehicleList: VehicleData[] = [];
   http = inject(HttpClient);
 
   constructor() { }
@@ -18,8 +19,4 @@ export class VehicleService {
 
     return this.vehicleList;
   } 
-
-  addVehicle(vehicle: { name: string, value: string }) {
-    this.vehicleList.push(vehicle);
-  }
 }

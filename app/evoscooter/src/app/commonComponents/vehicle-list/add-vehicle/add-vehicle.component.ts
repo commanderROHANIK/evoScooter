@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatFormFieldModule, } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { VehicleService } from '../../../services/vehicle.service';
@@ -33,6 +33,5 @@ export class AddVehicleComponent {
 
   onFormSubmit($event: SubmitEvent) {
     $event.preventDefault();
-    this.vehicleService.addVehicle({  name: this.idFormControl.value, value: this.typeFormControl.value });
   }
 }

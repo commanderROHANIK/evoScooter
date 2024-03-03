@@ -3,6 +3,7 @@ import { VehicleCardComponent } from './vehicle-card/vehicle-card.component';
 import { CommonModule } from '@angular/common';
 import { AddVehicleComponent } from "./add-vehicle/add-vehicle.component";
 import { VehicleService } from '../../services/vehicle.service';
+import { VehicleData } from '../../types/types';
 
 @Component({
     selector: 'app-vehicle-list',
@@ -14,7 +15,7 @@ import { VehicleService } from '../../services/vehicle.service';
 export class VehicleListComponent implements OnInit{
   @Input() showTitle!: boolean;
 
-  vehicleList: any[] = [];
+  vehicleList: VehicleData[] = [];
   vehicleService: VehicleService = inject(VehicleService);
   popupVisible: boolean = false;
 
