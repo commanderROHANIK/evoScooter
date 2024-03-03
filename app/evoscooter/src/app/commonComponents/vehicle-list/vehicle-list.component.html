@@ -7,6 +7,6 @@
     <app-vehicle-card *ngFor="let vehicle of vehicleList" [vehicle]="vehicle"></app-vehicle-card>
 
     <div *ngIf="popupVisible">
-        <app-add-vehicle></app-add-vehicle>
+        <app-add-vehicle [vehicleService]="vehicleService"></app-add-vehicle>
     </div>
 </div>

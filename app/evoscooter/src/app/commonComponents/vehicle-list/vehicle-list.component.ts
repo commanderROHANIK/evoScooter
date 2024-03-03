@@ -25,5 +25,6 @@ export class VehicleListComponent {
 
   addVehicle() {
     this.popupVisible = !this.popupVisible;
+    this.vehicleList = this.vehicleService.getAllVehicles();
   }
 }

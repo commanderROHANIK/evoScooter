@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatFormFieldModule, } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -20,16 +20,15 @@ import { VehicleService } from '../../../services/vehicle.service';
   styleUrl: './add-vehicle.component.scss'
 })
 export class AddVehicleComponent {
+  @Input() vehicleService!: VehicleService;
   idFormControl!: FormControl<any>;
   typeFormControl!: FormControl<any>;
   siteFormControl!: FormControl<any>;
-  vehicleService: VehicleService;
 
   constructor() {
     this.idFormControl = new FormControl('');
     this.typeFormControl = new FormControl('');
     this.siteFormControl = new FormControl('');
-    this.vehicleService = new VehicleService();
   }
 
   onFormSubmit($event: SubmitEvent) {
