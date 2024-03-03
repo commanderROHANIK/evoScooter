@@ -1,11 +1,29 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const port = 3000;
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+var allowedOrigins = [
+  'http://localhost:4200',
+  'http://localhost:4200/admin'
+];
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.use(cors({
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true);
+    console.log("here");
+    if(allowedOrigins.indexOf(origin) === -1){
+      var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
+
+app.get("/vehicles", async (req, res) => {
+  const data = await prisma.vehicle.findMany();
+  res.send(data);
 });
