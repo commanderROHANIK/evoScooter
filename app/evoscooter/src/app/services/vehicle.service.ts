@@ -1,22 +1,23 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehicleService {
-  vehicleList: { name: string, value: string }[] = [
-    { name: 'Object 1', value: 'Value 1' },
-    { name: 'Object 2', value: 'Value 2' },
-    { name: 'Object 3', value: 'Value 3' },
-    { name: 'Object 4', value: 'Value 4' },
-    { name: 'Object 5', value: 'Value 5' }
-  ];
+  vehicleList: any = [];
+  http = inject(HttpClient);
 
   constructor() { }
 
-  getAllVehicles() {
+  async getAllVehicles() {
+    await this.http.get("http://localhost:3000/vehicles").subscribe((data: any) => {
+      console.log(data);
+      this.vehicleList = data;
+    });
+
     return this.vehicleList;
-  }
+  } 
 
   addVehicle(vehicle: { name: string, value: string }) {
     this.vehicleList.push(vehicle);

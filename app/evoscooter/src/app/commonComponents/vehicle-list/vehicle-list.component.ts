@@ -1,8 +1,8 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, OnInit } from '@angular/core';
 import { VehicleCardComponent } from './vehicle-card/vehicle-card.component';
 import { CommonModule } from '@angular/common';
-import { VehicleService } from '../../services/vehicle.service';
 import { AddVehicleComponent } from "./add-vehicle/add-vehicle.component";
+import { VehicleService } from '../../services/vehicle.service';
 
 @Component({
     selector: 'app-vehicle-list',
@@ -11,20 +11,20 @@ import { AddVehicleComponent } from "./add-vehicle/add-vehicle.component";
     styleUrl: './vehicle-list.component.scss',
     imports: [VehicleCardComponent, CommonModule, AddVehicleComponent]
 })
-
-export class VehicleListComponent {
+export class VehicleListComponent implements OnInit{
   @Input() showTitle!: boolean;
 
-  vehicleList: { name: string; value: string; }[] | undefined;
+  vehicleList: any[] = [];
   vehicleService: VehicleService = inject(VehicleService);
   popupVisible: boolean = false;
 
-  constructor() {
-    this.vehicleList = this.vehicleService.getAllVehicles();
+  constructor() {  }
+
+  async ngOnInit() {
+    this.vehicleList = await this.vehicleService.getAllVehicles();
   }
 
   addVehicle() {
     this.popupVisible = !this.popupVisible;
-    this.vehicleList = this.vehicleService.getAllVehicles();
   }
 }
