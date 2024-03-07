@@ -6,6 +6,8 @@ import { removeUser } from "../../admin/actions";
 export default function UserCard(User: UserData) {
     const [isEditOpen, setIsEditOpen] = useState(false);
 
+    console.log(User);
+
     return (
         <div
             key={User.Email}

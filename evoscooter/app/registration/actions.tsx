@@ -20,13 +20,13 @@ export async function handleSubmit(formData: FormData) {
         console.log(site);
         await prisma.user.create({
             data: {
-                name: `${name}`,
-                email: `${email}`,
-                password: hashedPassword,
-                type: 'usr',
-                site: {
+                Name: `${name}`,
+                Email: `${email}`,
+                Password: hashedPassword,
+                Type: 'usr',
+                Site: {
                     connect: {
-                        address: site?.toString()
+                        Address: site?.toString()
                     }
                 }
             }

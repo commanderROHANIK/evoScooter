@@ -11,7 +11,11 @@ export async function getVehicles() {
 }
 
 export async function getUsers() {
-    return prisma.user.findMany();
+    var users = await prisma.user.findMany();
+
+    console.log(users);
+
+    return users;
 }
 
 export async function getSites() {
@@ -62,7 +66,7 @@ export async function handleAddVehicleSubmit(formData: FormData) {
 
     const siteRecord = await prisma.site.findFirst({
         where: {
-            address: {
+            Address: {
                 contains: `${site}`
             }
         }
@@ -72,9 +76,9 @@ export async function handleAddVehicleSubmit(formData: FormData) {
 
     await prisma.vehicle.create({
         data: {
-            type: `${type}`,
-            rentable: true,
-            siteAddress: siteRecord.address
+            Type: `${type}`,
+            Rentable: true,
+            SiteAddress: siteRecord.Address
         }
     });
 
@@ -96,20 +100,19 @@ export async function handleAddUserSubmit(formData: FormData) {
     try {
         const siteRecord = await prisma.site.findFirst({
             where: {
-                address: {
+                Address: {
                     contains: `${site}`
                 }
             }
         });
-        // Prisma segítségével hozzáadjuk az új felhasználót az adatbázishoz
         await prisma.user.create({
             data: {
-                email: `${email}`,
-                name: `${name}`,
-                licenseNumber: `${licenseNumber}`,
-                type: `${type}`,
-                siteAddress: siteRecord?.address,
-                password: ""
+                Email: `${email}`,
+                Name: `${name}`,
+                LicenseNumber: `${licenseNumber}`,
+                Type: `${type}`,
+                SiteAddress: siteRecord?.Address,
+                Password: ""
             }
         });
         

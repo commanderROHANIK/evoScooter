@@ -14,41 +14,41 @@ datasource db {
 }
 
 model Rentals {
-  userEmail String
-  vehicleId Int
-  startTime DateTime
-  endTime   DateTime
-  state     String
+  UserEmail String
+  VehicleId Int
+  StartTime DateTime
+  EndTime   DateTime
+  State     String
 
-  @@id([userEmail, vehicleId])
-  User    User    @relation(fields: [userEmail], references: [email])
-  Vehicle Vehicle @relation(fields: [vehicleId], references: [id])
+  @@id([UserEmail, VehicleId])
+  User    User    @relation(fields: [UserEmail], references: [Email])
+  Vehicle Vehicle @relation(fields: [VehicleId], references: [Id])
 }
 
 model Site {
-  address String    @id @unique
+  Address String    @id @unique
   User    User[]
   Vehicle Vehicle[]
 }
 
 model User {
-  email         String    @id @unique
-  name          String
-  licenseNumber String?
-  type          String
-  password      String
+  Email         String    @id @unique
+  Name          String
+  LicenseNumber String?
+  Type          String
+  Password      String
   Rentals       Rentals[]
 
-  site          Site      @relation(fields: [siteAddress], references: [address])
-  siteAddress   String    
+  Site          Site      @relation(fields: [SiteAddress], references: [Address])
+  SiteAddress   String    
 }
 
 model Vehicle {
-  id          Int     @id @default(autoincrement())
-  type        String
-  rentable    Boolean
-  siteAddress String
+  Id          Int     @id @default(autoincrement())
+  Type        String
+  Rentable    Boolean
+  SiteAddress String
 
-  site    Site      @relation(fields: [siteAddress], references: [address])
+  Site    Site      @relation(fields: [SiteAddress], references: [Address])
   Rentals Rentals[]
 }

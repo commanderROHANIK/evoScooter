@@ -21,14 +21,14 @@ export const authOptions = {
                 const prisma = new PrismaClient();
                 const user = await prisma.user.findFirst({
                     where: {
-                        email: credentials?.email
+                        Email: credentials?.email
                     }
                 })
 
                 if (!user) return null;
 
-                if(await compare(credentials?.password, user?.password)) {
-                    return {id: 1, email: user.email};
+                if(await compare(credentials?.password, user?.Password)) {
+                    return {id: 1, email: user.Email};
                 }
                 return null;
             }
