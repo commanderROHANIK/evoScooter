@@ -4,7 +4,7 @@
         <button (click)="addVehicle()">Add Vehicle</button>
     </div>
 
-    <app-vehicle-card *ngFor="let vehicle of vehicleList" [vehicle]="vehicle"></app-vehicle-card>
+    <app-vehicle-card *ngFor="let vehicle of vehicles" [vehicle]="vehicle"></app-vehicle-card>
 
     <div *ngIf="popupVisible">
         <app-add-vehicle [vehicleService]="vehicleService"></app-add-vehicle>

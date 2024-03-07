@@ -15,14 +15,14 @@ import { VehicleData } from '../../types/types';
 export class VehicleListComponent implements OnInit{
   @Input() showTitle!: boolean;
 
-  vehicleList: VehicleData[] = [];
+  vehicles: VehicleData[] = [];
   vehicleService: VehicleService = inject(VehicleService);
   popupVisible: boolean = false;
 
   constructor() {  }
 
   async ngOnInit() {
-    this.vehicleList = await this.vehicleService.getAllVehicles();
+    this.vehicles = await this.vehicleService.getAllVehicles();
   }
 
   addVehicle() {
