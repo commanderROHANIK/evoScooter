@@ -18,15 +18,8 @@ export default function Login() {
             className="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
             onClick={handleLogin}
           >
-            Sign in
+            Sign in with Azuer AD
           </button>
-        </div>
-        <div className="m-6">
-          <Link
-            href="/registration"
-            className="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">
-            Registrate
-          </Link>
         </div>
       </div>
     </div>
