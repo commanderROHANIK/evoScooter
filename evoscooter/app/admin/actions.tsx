@@ -27,7 +27,7 @@ export async function getRentals() {
 export async function removeVehicle(id: number) {
     await prisma.vehicle.delete({
         where: {
-            id: id
+            Id: id
         }
     });
     revalidatePath("/admin");
@@ -36,7 +36,7 @@ export async function removeVehicle(id: number) {
 export async function removeUser(email: string) {
     await prisma.user.delete({
         where: {
-            email: email
+            Email: email
         }
     })
     revalidatePath("/admin");
@@ -86,7 +86,6 @@ export async function handleAddUserSubmit(formData: FormData) {
     let type = formData.get("type");
     let site = formData.get("sites");
 
-    // Ellenőrizzük, hogy a 'type' változó undefined-e vagy üres string
     if (typeof type === 'undefined' || (typeof type === 'string' && type.length === 0)) {
         type = "usr";
     }
@@ -109,12 +108,29 @@ export async function handleAddUserSubmit(formData: FormData) {
                 Password: ""
             }
         });
-        
+
     } catch (error) {
         console.error('Error creating new user:', error);
     } finally {
         await prisma.$disconnect();
     }
+    revalidatePath("/admin");
+}
+
+export async function updateRentState(rental: RentData, state: string) {
+
+    await prisma.rentals.update({
+        where: {
+            UserEmail_VehicleId_StartTime: {
+                UserEmail: rental.UserEmail,
+                VehicleId: rental.VehicleId,
+                StartTime: rental.StartTime
+            }
+        },
+        data: {
+            State: state
+        }
+    });
     revalidatePath("/admin");
 }
 

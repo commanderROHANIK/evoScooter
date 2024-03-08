@@ -2,7 +2,7 @@ import { RentData } from "@/types";
 import { useState } from "react";
 import ShowRent from "./ShowRent";
 
-export default function SiteCard(Rental: RentData) {
+export default function RentCard(Rental: RentData) {
     const [isEditOpen, setIsEditOpen] = useState(false);
 
     return (

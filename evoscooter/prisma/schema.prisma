@@ -20,7 +20,7 @@ model Rentals {
   EndTime   DateTime
   State     String
 
-  @@id([UserEmail, VehicleId])
+  @@id([UserEmail, VehicleId, StartTime])
   User    User    @relation(fields: [UserEmail], references: [Email])
   Vehicle Vehicle @relation(fields: [VehicleId], references: [Id])
 }

@@ -24,7 +24,7 @@ export default function Rents(RentsToApprove: RentProps) {
             {
                 RentsToApprove.Rentals.map((rental) => {
                     return (
-                        <RentCard UserEmail={rental.UserEmail} VehicleId={rental.VehicleId} Starttime={rental.Starttime} EndTime={rental.EndTime} State={rental.State}  />
+                        <RentCard UserEmail={rental.UserEmail} VehicleId={rental.VehicleId} StartTime={rental.StartTime} EndTime={rental.EndTime} State={rental.State}  />
                     )
                 })
             }
