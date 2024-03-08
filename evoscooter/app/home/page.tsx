@@ -10,7 +10,7 @@ export default async function Login() {
     const session = await getServerSession(authOptions);
     const vehicles = await getVehicles();
 
-    if (!session) {
+    if (!session?.user) {
         redirect("/login");
     }
 
