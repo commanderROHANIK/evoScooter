@@ -13,9 +13,6 @@ export default function SiteCard(Rental: RentData) {
         >
             <ShowRent isOpen={isEditOpen} closeModal={() => setIsEditOpen(false)} rent={Rental} />
             <p>{Rental.UserEmail}</p>
-            <button
-                className="bg-red-600 text-white text-sm rounded-md px-2 py-1"
-            >Remove</button>
         </div>
     );
 }

@@ -21,7 +21,6 @@ export async function rentVehicle(formData: FormData) {
           State: "Pending"
         }
       });
-      console.log('New rental created:', newRental);
   
       await prisma.vehicle.update({
         where: { Id: parseInt(`${vehicle}`, 10) },

@@ -13,8 +13,6 @@ export async function getVehicles() {
 export async function getUsers() {
     var users = await prisma.user.findMany();
 
-    console.log(users);
-
     return users;
 }
 
@@ -50,10 +48,6 @@ export async function removeSite(address: string) {
 }
 
 export async function handleAddSiteSubmit(formData: FormData) {
-    //let address = formData.get("address")?.toString();
-    //let query = `INSERT INTO evoscooter.site (Address) VALUES('${address}');`;
-
-
     if (formData.get("address") != null)
         await prisma.site.create({ data: { address: `${formData.get("address")}` } })
 
@@ -123,3 +117,4 @@ export async function handleAddUserSubmit(formData: FormData) {
     }
     revalidatePath("/admin");
 }
+
