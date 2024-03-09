@@ -1,28 +1,27 @@
 import { getServerSession } from "next-auth";
-import Header from "../commonComponents/header";
-import { getRentals, getSites, getUsers, getVehicles } from "./actions";
-import Rents from "./components/Rents/rents";
-import Sites from "./components/SiteList/sites";
-import Users from "./components/UserList/users";
-import Vehicles from "./components/VehicleList/vehicles";
+import Header from "../components/common/header";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
-
+import DataManager from "./dataManager";
+import { getRentals, getSites, getUsers, getVehicles } from "./actions";
 
 export default async function AdminPage() {
     const session = await getServerSession(authOptions);
-    
-    if (!session) {
+
+    if (!session)
         redirect("/login");
-    }
+
+    const [rentals, vehicles, users, sites] = await Promise.all([
+        getRentals(),
+        getVehicles(),
+        getUsers(),
+        getSites()
+    ]);
 
     return (
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8" >
+        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <Header />
-            <Rents Rentals={await getRentals()}/>
-            <Vehicles Vehicles={await getVehicles()}/>
-            <Users Users={await getUsers()}/>
-            <Sites Sites={await getSites()}/>
+            <DataManager rentals={rentals} vehicles={vehicles} users={users} sites={sites} />
         </div>
     );
 }

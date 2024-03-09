@@ -1,15 +1,10 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { PrismaClient } from "@prisma/client";
+import formatDateToSQLDateTime from "../utils/DateConverter";
 
-const mariadb = require('mariadb');
-const pool = mariadb.createPool({
-    host: "localhost",
-    user: "root",
-    password: "root",
-    connectionLimit: 10,
-    database: "evoscooter"
-});
+const prisma = new PrismaClient();
 
 export async function rentVehicle(formData: FormData) {
     const email = formData.get("email");
@@ -17,32 +12,29 @@ export async function rentVehicle(formData: FormData) {
     const start = formData.get("start");
     const end = formData.get("end");
 
-    let conn;
+    const newRental = await prisma.rentals.create({
+        data: {
+          UserEmail: `${email}`,
+          VehicleId: parseInt(`${vehicle}`, 10),
+          StartTime: convertToISO8601(`${start}`),
+          EndTime: convertToISO8601(`${end}`),
+          State: "Pending"
+        }
+      });
+  
+      await prisma.vehicle.update({
+        where: { Id: parseInt(`${vehicle}`, 10) },
+        data: { Rentable: false }
+      });
 
-    try {
-        conn = await pool.getConnection();
-        await conn.query("INSERT INTO evoscooter.rentals (`User.Email`, `Vehicle.Id`, StartTime, EndTime, State) VALUES('" + email +"', " + vehicle + ", '" + start + "', '" + end + "', 'Pending');");
-        await conn.query("UPDATE evoscooter.vehicle SET Rentable=0 WHERE Id=" + vehicle + ";");
-    } catch (err) {
-        console.log(err)
-    } finally {
-        conn.end();
-        revalidatePath("/home");
-    }
+    revalidatePath("/home");
 }
 
 export async function getVehicles() {
-    let conn;
-    let rows;
+    return await prisma.vehicle.findMany();
+}
 
-    try {
-        conn = await pool.getConnection();
-        rows = await conn.query("SELECT * FROM vehicle");
-    } catch (err) {
-        console.log(err)
-    } finally {
-        conn.end();
-    }
-
-    return rows;
+function convertToISO8601(dateString: string) {
+  const date = new Date(dateString);
+  return date.toISOString();
 }

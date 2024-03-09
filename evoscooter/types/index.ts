@@ -39,11 +39,7 @@ export interface VehicleData {
 
 export interface VehicleProps {
     Vehicles: Array<VehicleData>;
-}
-
-export interface RentVehicleProps {
-    Email: string
-    Vehicles: Array<VehicleData>;
+    Email: string;
 }
 
 export interface SiteData {
@@ -57,7 +53,7 @@ export interface SiteProps {
 export interface RentData {
     UserEmail: string;
     VehicleId: string;
-    Starttime: string;
+    StartTime: string;
     EndTime: string;
     State: string;
 }
