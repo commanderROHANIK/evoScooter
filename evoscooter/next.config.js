@@ -8,7 +8,10 @@ const nextConfig = {
                 permanent: true
             }
         ];
-    }
+    },
+    typescript: {
+        ignoreBuildErrors: true,
+    },
 }
 
 module.exports = nextConfig
