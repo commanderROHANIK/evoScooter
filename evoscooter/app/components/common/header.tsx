@@ -13,6 +13,9 @@ export default function Header() {
     const navigateToAdminPage = () => {
         router.push("/admin")
     }
+    const navigateToProfilePage = () => {
+        router.push("/profile")
+    }
 
     return (
         <nav className="bg-black rounded-xl">
@@ -41,6 +44,12 @@ export default function Header() {
                             <button
                                 onClick={navigateToAdminPage}>
                                 Admin page
+                            </button>
+                        </li>
+                        <li className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-600 md:p-0 dark:text-white  dark:hover:text-white md:dark:hover:bg-transparent">
+                            <button
+                                onClick={navigateToProfilePage}>
+                                Profile
                             </button>
                         </li>
                         <li className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-600 md:p-0 dark:text-white  dark:hover:text-white md:dark:hover:bg-transparent">
